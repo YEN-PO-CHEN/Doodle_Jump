@@ -8,14 +8,15 @@
         <file>rec/photo/platform/blue/platform-blue.png</file>
         <file>rec/photo/platform/brown/platform_brown.png</file>
         <file>rec/photo/platform/brown/platform_brown_broken.png</file>
-        <file>rec/photo/platform/green/p-green.png</file>
         <file>rec/photo/platform/green/p-green-s0.png</file>
         <file>rec/photo/platform/green/p-green-s1.png</file>
-        <file>rec/photo/platform/white/p-white.png</file>
+        <file>rec/photo/platform/green/p-green.png</file>
         <file>rec/photo/platform/white/p-white-s0.png</file>
         <file>rec/photo/platform/white/p-white-s1.png</file>
+        <file>rec/photo/platform/white/p-white.png</file>
         <file>rec/photo/player/scene1/L.png</file>
         <file>rec/photo/player/scene1/R.png</file>
         <file>rec/photo/player/scene1/S.png</file>
+        <file>rec/photo/topbar/topbar.png</file>
     </qresource>
 </RCC>

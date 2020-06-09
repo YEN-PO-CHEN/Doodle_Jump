@@ -25,10 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        doodle.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
+        _basic.h \
+        doodle.h \
         mainwindow.h
 
 FORMS += \
@@ -40,4 +43,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    rec.qrc
+    res.qrc

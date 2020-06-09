@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
-namespace Ui {
-class MainWindow;
+#include "_basic.h"
+#include "doodle.h"
+namespace Ui
+{
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -14,9 +16,20 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void keyPressEvent(QKeyEvent *e);
 
 private:
     Ui::MainWindow *ui;
+
+    QGraphicsScene *scene;
+    QGraphicsPixmapItem *pic;
+    QGraphicsTextItem *text;
+    QGraphicsItemGroup *group;
+    QTimer *timer;
+    doodle *dood;
+signals:
+    void move_L_signal();
+    void move_R_signal();
 };
 
 #endif // MAINWINDOW_H
