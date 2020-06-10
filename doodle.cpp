@@ -78,7 +78,6 @@ void doodle::horizon_intercial(bool direction)
     }
     this->hor_int->start(10);
     connect(hor_int, SIGNAL(timeout()), this, SLOT(ho_in()));
-    std::cout << "\n\nstart" << time << std::endl;
 }
 void doodle::ho_in()
 {
@@ -87,7 +86,6 @@ void doodle::ho_in()
     {
         delete hor_int;
         hor_int = new QTimer;
-        std::cout << "stop " << time << std::endl;
         time = 0;
         push_time_L = 0;
         push_time_R = 0;
@@ -100,13 +98,9 @@ void doodle::ho_in()
         --push_time_L;
     double vel = L_R * Doodle_horizonal_vel - (push_time_R - push_time_L) * Doodle_per_push * Doodle_vertical_acc;
     double acc = vel / Doodle_horizonal_run;
-    //std::cout<<" "<<vel<<" "<<acc<<std::endl;
+
     position = vel - (acc / 2) * (2 * this->time + 1);
-
-    std::cout << " " << position << std::endl;
-
     doodle_pos_X += position;
-    std::cout << " " << doodle_pos_X << std::endl;
     doodle_test();
     this->player->setX(doodle_pos_X);
 }

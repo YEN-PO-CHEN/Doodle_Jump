@@ -19,10 +19,15 @@ bullet::bullet(QGraphicsScene *mainwin, const int i, const double X, const doubl
 
 void bullet::fly()
 {
-    setPos(X_axis, Y_axis - 3);
-    if (Y_axis < 0)
-    {
-        this->scene()->removeItem(this);
-        delete this;
-    }
+    Y_axis -= 4.5;
+    blt->setPos(X_axis + 5, Y_axis - 30);
+}
+
+void bullet::con()
+{
+    if (!blt_time)
+        delete blt_time;
+    blt_time = new QTimer;
+    connect(blt_time, SIGNAL(timeout()), this, SLOT(fly()));
+    blt_time->start(10);
 }

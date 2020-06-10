@@ -19,6 +19,7 @@ public:
     ~MainWindow();
     void keyPressEvent(QKeyEvent *e);
     void shooot();
+    void aftertouch();
 
 private:
     Ui::MainWindow *ui;

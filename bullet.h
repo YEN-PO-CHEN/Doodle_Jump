@@ -9,7 +9,7 @@ class bullet:public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     bullet(QGraphicsScene *mainwin, const int i,double X,double Y);
-
+    void con();
 protected:
     double X_axis,Y_axis;
     QGraphicsPixmapItem *blt;
@@ -20,6 +20,7 @@ protected:
 
 public slots:
     void fly();
+
 };
 
 #endif // BULLET_H

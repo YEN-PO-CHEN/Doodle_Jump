@@ -46,6 +46,12 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
 }
 void MainWindow::shooot()
 {
-    std::cout << "fuck" << std::endl;
     bul = new bullet(scene, 1, dood->doodle_pos_X, dood->doodle_pos_Y);
+    bul->con();
+    QTimer::singleShot(6000, this, SLOT(aftertouch()));
+}
+void MainWindow::aftertouch()
+{
+    this->scene->removeItem(bul);
+    delete bul;
 }
