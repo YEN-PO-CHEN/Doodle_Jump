@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     dood->connect(timer, SIGNAL(timeout()), dood, SLOT(doodle_jump()));
     dood->connect(this, SIGNAL(move_L_signal()), dood, SLOT(move_L()));
     dood->connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R()));
-    dood->connect(this,SIGNAL(timeout()),dood,SLOT());
+    dood->connect(this, SIGNAL(timeout()), dood, SLOT());
     timer->start(10);
 }
 
