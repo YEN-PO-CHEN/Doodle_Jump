@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "doodle.h"
 #include <QApplication>
-
+bool doodle::up_down = true;
 int doodle::jump = 0;
 int main(int argc, char *argv[])
 {

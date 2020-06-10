@@ -5,6 +5,7 @@
 #include "_basic.h"
 #include "bullet.h"
 #include "doodle.h"
+#include "background.h"
 namespace Ui
 {
     class MainWindow;
@@ -19,11 +20,9 @@ public:
     ~MainWindow();
     void keyPressEvent(QKeyEvent *e);
     void shooot();
-    void aftertouch();
 
 private:
     Ui::MainWindow *ui;
-
     QGraphicsScene *scene;
     QGraphicsPixmapItem *pic;
     QGraphicsTextItem *text;
@@ -31,6 +30,9 @@ private:
     QTimer *timer;
     doodle *dood;
     bullet *bul;
+    background *bcgd;
+    QGraphicsScene *here;
+
 signals:
     void move_L_signal();
     void move_R_signal();

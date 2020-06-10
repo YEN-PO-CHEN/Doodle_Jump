@@ -10,12 +10,15 @@ doodle::doodle(QGraphicsScene *mainwin, int i) : ps_R(0),
                                                  player(new QGraphicsPixmapItem),
                                                  doodle_pix_type_1(new QPixmap(":/rec/photo/player/scene1/L.png")),
                                                  doodle_pix_type_2(new QPixmap(":/rec/photo/player/scene1/L.png")),
-                                                 hor_int(new QTimer)
+                                                 hor_int(new QTimer),
+                                                 sync_time(new QTimer)
 {
     //add if condition.
     player->setPos(doodle_pos_X, doodle_pos_Y);
     player->setPixmap(doodle_pix_type_1->scaled(Doodle_SIZE, Doodle_SIZE));
     mainwin->addItem(player);
+    sync_time->start(1);
+    connect(sync_time, SIGNAL(timeout()), this, SLOT(sync_status()));
 }
 void doodle::doodle_jump()
 {
@@ -28,14 +31,12 @@ void doodle::doodle_jump()
         double t_t = 2 * t + 1;
         double temp = (Doodle_vertical_acc * t_t) / 2.0;
         doodle_pos_Y += temp * (100.0 / Doodle_Jump_time);
-        this->player->setY(doodle_pos_Y);
     }
     else
     {
         double t_t = -1 * 2 * (t - (Doodle_Jump_time_int / 2) + 1) + 1;
         double temp = (Doodle_vertical_acc * t_t) / 2.0;
         doodle_pos_Y -= temp * (100.0 / Doodle_Jump_time);
-        this->player->setY(doodle_pos_Y);
     }
     ++jump;
 }
@@ -46,7 +47,7 @@ void doodle::move_L()
     this->player->setPixmap(QPixmap(":/rec/photo/player/scene1/L.png"));
     doodle_test();
     doodle_pos_X -= Move_By;
-    this->player->setX(doodle_pos_X);
+
     horizon_intercial(true);
     doodle_test();
     player->setX(doodle_pos_X);
@@ -58,10 +59,8 @@ void doodle::move_R()
     this->player->setPixmap(QPixmap(":/rec/photo/player/scene1/R.png"));
     doodle_test();
     doodle_pos_X += Move_By;
-    this->player->setX(doodle_pos_X);
     horizon_intercial(false);
     doodle_test();
-    this->player->setX(doodle_pos_X);
 }
 
 void doodle::horizon_intercial(bool direction)
@@ -102,7 +101,6 @@ void doodle::ho_in()
     position = vel - (acc / 2) * (2 * this->time + 1);
     doodle_pos_X += position;
     doodle_test();
-    this->player->setX(doodle_pos_X);
 }
 
 void doodle::doodle_test()
@@ -127,4 +125,9 @@ void doodle::shot()
 void doodle::aftershot()
 {
     this->player->setPixmap(QPixmap(":/rec/photo/player/scene1/R.png"));
+}
+
+void doodle::sync_status()
+{
+    this->player->setPos(doodle_pos_X, doodle_pos_Y);
 }

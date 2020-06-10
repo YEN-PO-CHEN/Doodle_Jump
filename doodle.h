@@ -17,6 +17,7 @@ public:
     double doodle_pos_X;
     double doodle_pos_Y;
     void shot();
+    static bool up_down;
 
 public slots:
     void doodle_jump();
@@ -24,6 +25,7 @@ public slots:
     void move_R();
     void ho_in();
     void aftershot();
+    void sync_status();
 
 protected:
     int type = 0;
@@ -43,6 +45,7 @@ protected:
     QPixmap *bullet_type_2;
     QTimer *hor_int;
     QTimer *bullet_timer;
+    QTimer *sync_time;
     int k = 0;
 };
 

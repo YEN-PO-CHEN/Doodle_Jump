@@ -25,16 +25,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        background.cpp \
         bullet.cpp \
         doodle.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        platform.cpp \
+        platform_blue.cpp
 
 HEADERS += \
         _basic.h \
+        background.h \
         bullet.h \
         doodle.h \
-        mainwindow.h
+        mainwindow.h \
+        platform.h \
+        platform_blue.h
 
 FORMS += \
         mainwindow.ui

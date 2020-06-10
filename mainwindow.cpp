@@ -10,11 +10,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
     //constructor
+    bcgd = new background(scene, 1);
     dood = new doodle(scene, 1);
+
     dood->connect(timer, SIGNAL(timeout()), dood, SLOT(doodle_jump()));
     dood->connect(this, SIGNAL(move_L_signal()), dood, SLOT(move_L()));
     dood->connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R()));
-
     timer->start(10);
 }
 
@@ -48,10 +49,4 @@ void MainWindow::shooot()
 {
     bul = new bullet(scene, 1, dood->doodle_pos_X, dood->doodle_pos_Y);
     bul->con();
-    QTimer::singleShot(6000, this, SLOT(aftertouch()));
-}
-void MainWindow::aftertouch()
-{
-    this->scene->removeItem(bul);
-    delete bul;
 }

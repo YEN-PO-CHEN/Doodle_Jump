@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>rec/photo/background/scene1.png</file>
         <file>rec/photo/bullet/blue.png</file>
         <file>rec/photo/bullet/brown.png</file>
         <file>rec/photo/monsters/bat.png</file>
@@ -18,5 +17,6 @@
         <file>rec/photo/player/scene1/R.png</file>
         <file>rec/photo/player/scene1/S.png</file>
         <file>rec/photo/topbar/topbar.png</file>
+        <file>rec/photo/background/scene1.jpg</file>
     </qresource>
 </RCC>

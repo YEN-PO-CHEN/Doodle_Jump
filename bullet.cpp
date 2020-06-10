@@ -1,12 +1,13 @@
 #include "bullet.h"
 
-bullet::bullet(QGraphicsScene *mainwin, const int i, const double X, const double Y) : X_axis(X),
+bullet::bullet(QGraphicsScene *mainwin, const int i, const double X, const double Y) : blt(new QGraphicsPixmapItem),
+                                                                                       X_axis(X),
                                                                                        Y_axis(Y),
-                                                                                       blt(new QGraphicsPixmapItem),
                                                                                        type(i),
                                                                                        bullet_pix_type_1(new QPixmap(":/rec/photo/bullet/brown.png")),
                                                                                        bullet_pix_type_2(new QPixmap(":/rec/photo/bullet/blue.png")),
-                                                                                       blt_time(new QTimer)
+                                                                                       blt_time(new QTimer),
+                                                                                       here(mainwin)
 {
     blt->setPos(X_axis + Doodle_SIZE / 2 - 20, Y_axis);
     if (type == 1)
@@ -19,8 +20,13 @@ bullet::bullet(QGraphicsScene *mainwin, const int i, const double X, const doubl
 
 void bullet::fly()
 {
-    Y_axis -= 4.5;
-    blt->setPos(X_axis + 5, Y_axis - 30);
+    Y_axis -= 10;
+    blt->setPos(X_axis + 5, Y_axis - 20);
+    if (Y_axis < 20)
+    {
+        this->here->removeItem(blt);
+        delete this;
+    }
 }
 
 void bullet::con()
