@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>426</width>
-    <height>665</height>
+    <width>872</width>
+    <height>883</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>10</x>
       <y>10</y>
       <width>400</width>
-      <height>600</height>
+      <height>800</height>
      </rect>
     </property>
     <property name="verticalScrollBarPolicy">
@@ -36,7 +36,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>426</width>
+     <width>872</width>
      <height>24</height>
     </rect>
    </property>
