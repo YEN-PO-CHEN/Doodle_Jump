@@ -2,11 +2,11 @@
 
 doodle::doodle(QGraphicsScene *mainwin, int i) : ps_R(0),
                                                  ps_L(0),
+                                                 doodle_pos_X(Default_X),
+                                                 doodle_pos_Y(Default_Y),
                                                  type(i),
                                                  L_R(0),
                                                  place_Y(Default_Y),
-                                                 doodle_pos_X(Default_X),
-                                                 doodle_pos_Y(Default_Y),
                                                  player(new QGraphicsPixmapItem),
                                                  doodle_pix_type_1(new QPixmap(":/rec/photo/player/scene1/L.png")),
                                                  doodle_pix_type_2(new QPixmap(":/rec/photo/player/scene1/L.png")),
@@ -125,17 +125,12 @@ void doodle::doodle_test()
     }
 }
 
-void doodle::shoot()
+void doodle::shot()
 {
     this->player->setPixmap(QPixmap(":/rec/photo/player/scene1/S.png"));
-    bullet_type_1 = new QPixmap(":/rec/photo/bullet/brown.png");
-    bullet_type_2 = new QPixmap(":/rec/photo/bullet/blue.png");
-    if (!bullet_timer)
-    {
-        delete bullet_timer;
-        bullet_timer = new QTimer;
-    }
-
-    if (type == 1)
-        ;
+    QTimer::singleShot(150, this, SLOT(aftershot()));
+}
+void doodle::aftershot()
+{
+    this->player->setPixmap(QPixmap(":/rec/photo/player/scene1/R.png"));
 }

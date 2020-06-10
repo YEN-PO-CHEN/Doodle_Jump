@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "_basic.h"
+#include "bullet.h"
 #include "doodle.h"
 namespace Ui
 {
@@ -17,6 +18,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void keyPressEvent(QKeyEvent *e);
+    void shooot();
 
 private:
     Ui::MainWindow *ui;
@@ -27,9 +29,11 @@ private:
     QGraphicsItemGroup *group;
     QTimer *timer;
     doodle *dood;
+    bullet *bul;
 signals:
     void move_L_signal();
     void move_R_signal();
+    void shoot_W_signal();
 };
 
 #endif // MAINWINDOW_H

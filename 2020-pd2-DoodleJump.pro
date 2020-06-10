@@ -25,12 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        bullet.cpp \
         doodle.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
         _basic.h \
+        bullet.h \
         doodle.h \
         mainwindow.h
 

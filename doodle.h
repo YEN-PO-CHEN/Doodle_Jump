@@ -14,7 +14,9 @@ public:
     void doodle_test();
     int ps_R;
     int ps_L;
-
+    double doodle_pos_X;
+    double doodle_pos_Y;
+    void shot();
 
 
 public slots:
@@ -22,25 +24,28 @@ public slots:
     void move_L();
     void move_R();
     void ho_in();
+    void aftershot();
 
 
 
-private:
+protected:
     int type = 0;
     int time;
     int L_R;
     static int jump;
     double t_t;
     double place_Y;
-    double doodle_pos_X;
-    double doodle_pos_Y;
+
     double position;
     int push_time_R=0;
     int push_time_L=0;
     QGraphicsPixmapItem *player;
     QPixmap *doodle_pix_type_1;
     QPixmap *doodle_pix_type_2;
+    QPixmap *bullet_type_1;
+    QPixmap *bullet_type_2;
     QTimer *hor_int;
+    QTimer *bullet_timer;
     int k=0;
 
 };

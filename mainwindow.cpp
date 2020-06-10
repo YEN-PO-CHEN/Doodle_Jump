@@ -10,11 +10,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
     //constructor
-    doodle *dood = new doodle(scene, 1);
+    dood = new doodle(scene, 1);
     dood->connect(timer, SIGNAL(timeout()), dood, SLOT(doodle_jump()));
     dood->connect(this, SIGNAL(move_L_signal()), dood, SLOT(move_L()));
     dood->connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R()));
-    dood->connect(this, SIGNAL(timeout()), dood, SLOT());
+
     timer->start(10);
 }
 
@@ -38,6 +38,14 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
         emit move_R_signal();
         break;
     case Qt::Key_W:
+        dood->shot();
+        shooot();
+
         break;
     }
+}
+void MainWindow::shooot()
+{
+    std::cout << "fuck" << std::endl;
+    bul = new bullet(scene, 1, dood->doodle_pos_X, dood->doodle_pos_Y);
 }
