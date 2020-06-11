@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     //constructor
     bcgd = new background(scene, 1);
     dood = new doodle(scene, 1);
-
+    ctor_pltfm();
     bul.resize(Bullet_NUM);
     dood->connect(timer, SIGNAL(timeout()), dood, SLOT(doodle_jump()));
     dood->connect(this, SIGNAL(move_L_signal()), dood, SLOT(move_L()));
@@ -47,16 +47,20 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
 }
 void MainWindow::shooot()
 {
-
     int count = 0;
     for (; count <= Bullet_NUM; ++count)
     {
         if (count == (Bullet_NUM))
             return;
-        if (main_bul.bullet_of_number.at(count))
+        if (_main.bullet_of_number.at(count))
             break;
     }
-    main_bul.bullet_of_number.at(count) = false;
+    _main.bullet_of_number.at(count) = false;
     bul.at(count) = new bullet(scene, 1, dood->doodle_pos_X, dood->doodle_pos_Y, count);
     bul.at(count)->con();
+}
+void MainWindow::ctor_pltfm()
+{
+    _main.pltfm_bool.resize(Platform_NUM, true);
+    _main.pltfm_QItem.resize(Platform_NUM);
 }

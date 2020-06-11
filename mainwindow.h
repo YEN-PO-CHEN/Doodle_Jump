@@ -21,7 +21,8 @@ public:
     ~MainWindow();
     void keyPressEvent(QKeyEvent *e);
     void shooot();
-    mainbullet main_bul;
+    mainbullet _main;
+    void ctor_pltfm();
 
 private:
     Ui::MainWindow *ui;

@@ -5,6 +5,8 @@
 bool doodle::up_down = true;
 int doodle::jump = 0;
 vector<bool> mainbullet::bullet_of_number{true, true, true, true, true};
+vector<bool> mainbullet::pltfm_bool;
+vector<QGraphicsItem *> mainbullet::pltfm_QItem;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
