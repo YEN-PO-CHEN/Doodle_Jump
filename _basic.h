@@ -10,6 +10,8 @@
 #include <QGraphicsItemGroup>
 #include <QKeyEvent>
 #include <QTimer>
+#include <QtGlobal>
+#include <QTime>
 #include <iostream>
 #include <QVector>
 using namespace std;

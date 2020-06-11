@@ -10,7 +10,9 @@ class platform_ver : public platform
     Q_OBJECT
 public:
     platform_ver();
+    platform_ver(int, int);
     void put_into_the_scene(int);
+    void add_pix();
 
 protected:
     QPixmap pix_platform;

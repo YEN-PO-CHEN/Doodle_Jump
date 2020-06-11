@@ -10,7 +10,9 @@ class platform_normal : public platform
     Q_OBJECT
 public:
     platform_normal();
+    platform_normal(int, int);
     void put_into_the_scene(int);
+    void add_pix();
 
 protected:
     QPixmap pix_platform;

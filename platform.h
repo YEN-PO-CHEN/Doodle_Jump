@@ -11,7 +11,10 @@ class platform : public QObject, public QGraphicsPixmapItem, public QGraphicsIte
 public:
     platform();
     platform(QGraphicsScene *, QGraphicsItemGroup *);
+    platform(int, int);
     virtual void put_into_the_scene(int){};
+    virtual void select_which_place();
+    virtual void add_pix(){};
     virtual ~platform();
 
 protected:
@@ -19,6 +22,7 @@ protected:
     QGraphicsItemGroup *_itemGroup;
     int num_platform = Platform_NUM;
     mainbullet _pltfm;
+    int X_plt, Y_plt;
 };
 
 #endif // PLATFORM_H

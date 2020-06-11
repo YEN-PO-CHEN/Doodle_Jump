@@ -11,6 +11,8 @@ class platform_broken : public platform
     Q_OBJECT
 public:
     platform_broken();
+    platform_broken(int ,int);
+    void add_pix();
     void put_into_the_scene(int);
 
 protected:
