@@ -21,7 +21,7 @@ using namespace std;
 #define Scene_Y 800
 #define Default_X 200
 #define Default_Y 600
-#define Doodle_SIZE 60
+#define Doodle_SIZE 100
 
 //doodle jump time
 

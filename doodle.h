@@ -39,13 +39,14 @@ protected:
     int push_time_R = 0;
     int push_time_L = 0;
     QGraphicsPixmapItem *player;
-    QPixmap *doodle_pix_type_1;
-    QPixmap *doodle_pix_type_2;
-    QPixmap *bullet_type_1;
-    QPixmap *bullet_type_2;
     QTimer *hor_int;
     QTimer *bullet_timer;
     QTimer *sync_time;
+    QPixmap *doodle_pix_type_1[3];
+    QPixmap *doodle_pix_type_2[3];
+    QPixmap *bullet_type_1;
+    QPixmap *bullet_type_2;
+
     int k = 0;
 };
 
