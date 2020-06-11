@@ -4,12 +4,14 @@
 #include <QObject>
 #include <QWidget>
 #include "mainbullet.h"
+
 class platform : public QObject, public QGraphicsPixmapItem, public QGraphicsItemGroup
 {
     Q_OBJECT
 public:
+    platform();
     platform(QGraphicsScene *, QGraphicsItemGroup *);
-    virtual void put_into_the_scene() {}
+    virtual void put_into_the_scene(int){};
     virtual ~platform();
 
 protected:

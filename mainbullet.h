@@ -2,11 +2,11 @@
 #define MAINBULLET_H
 #include "_basic.h"
 
-class mainbullet
+class mainbullet : public QGraphicsPixmapItem
 {
 public:
     static vector<bool> bullet_of_number;
     static vector<bool> pltfm_bool;
-    static vector<QGraphicsItem *> pltfm_QItem;
+    static vector<QGraphicsPixmapItem *> pltfm_QItem;
 };
 #endif // MAINBULLET_H

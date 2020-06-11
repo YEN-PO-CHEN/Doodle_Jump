@@ -13,11 +13,12 @@ class platform__build : public QObject, public QGraphicsPixmapItem, public QGrap
 {
     Q_OBJECT
 public:
-    platform__build(QGraphicsScene *, QGraphicsItemGroup *);
-
+    platform__build(QGraphicsScene *,QGraphicsItemGroup *);
 private:
     QGraphicsScene *plt_Scene;
     QGraphicsItemGroup *plt_Group;
+
+
 };
 
 #endif // PLATFORM__BUILD_H
