@@ -22,7 +22,6 @@ using namespace std;
 #define Default_X 200
 #define Default_Y 600
 
-
 /******************
  * DOODLE
 ******************/
@@ -44,12 +43,10 @@ using namespace std;
 #define Doodle_per_push 0.01
 #define Move_By 10
 
-
 /******************
  * BULLET
 ******************/
 #define Bullet_NUM 5
-
 
 /******************
  * PLATFORM

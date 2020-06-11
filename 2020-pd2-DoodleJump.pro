@@ -31,7 +31,11 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         platform.cpp \
-        platform_blue.cpp
+        platform__build.cpp \
+        platform_broken.cpp \
+        platform_hor.cpp \
+        platform_normal.cpp \
+        platform_ver.cpp
 
 HEADERS += \
         _basic.h \
@@ -41,7 +45,11 @@ HEADERS += \
         mainbullet.h \
         mainwindow.h \
         platform.h \
-        platform_blue.h
+        platform__build.h \
+        platform_broken.h \
+        platform_hor.h \
+        platform_normal.h \
+        platform_ver.h
 
 FORMS += \
         mainwindow.ui
