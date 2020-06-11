@@ -38,6 +38,7 @@ HEADERS += \
         background.h \
         bullet.h \
         doodle.h \
+        mainbullet.h \
         mainwindow.h \
         platform.h \
         platform_blue.h

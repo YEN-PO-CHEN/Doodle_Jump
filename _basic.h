@@ -21,7 +21,7 @@ using namespace std;
 #define Scene_Y 800
 #define Default_X 200
 #define Default_Y 600
-#define Doodle_SIZE 100
+#define Doodle_SIZE 80
 
 //doodle jump time
 
@@ -38,5 +38,7 @@ using namespace std;
 #define Doodle_horizonal_vel (Doodle_horizonal_acc * Doodle_horizonal_run)
 #define Doodle_per_push 0.01
 #define Move_By 10
+
+#define Bullet_NUM 5
 
 #endif // _BASIC_H

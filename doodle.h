@@ -42,8 +42,8 @@ protected:
     QTimer *hor_int;
     QTimer *bullet_timer;
     QTimer *sync_time;
-    QPixmap *doodle_pix_type_1[3];
-    QPixmap *doodle_pix_type_2[3];
+    QPixmap doodle_pix_type_1[3];
+    QPixmap doodle_pix_type_2[3];
     QPixmap *bullet_type_1;
     QPixmap *bullet_type_2;
 

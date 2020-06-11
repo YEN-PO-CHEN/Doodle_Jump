@@ -4,13 +4,15 @@
 #include <QObject>
 #include <QWidget>
 #include "_basic.h"
+#include "mainbullet.h"
 class bullet : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    bullet(QGraphicsScene *mainwin, const int i, double X, double Y);
+    bullet(QGraphicsScene *mainwin, const int i, double X, double Y, int count);
     QGraphicsPixmapItem *blt;
     void con();
+    mainbullet main_bul;
 
 protected:
     double X_axis, Y_axis;
@@ -20,9 +22,12 @@ protected:
     QPixmap *bullet_pix_type_2;
     QTimer *blt_time;
     QGraphicsScene *here;
+    int which_bul;
 
 public slots:
     void fly();
+signals:
+    void bomb(int);
 };
 
 #endif // BULLET_H

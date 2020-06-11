@@ -5,7 +5,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           scene(new QGraphicsScene(0, 0, Scene_X, Scene_Y)),
                                           group(new QGraphicsItemGroup),
                                           timer(new QTimer(this))
-
 {
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
@@ -13,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     bcgd = new background(scene, 1);
     dood = new doodle(scene, 1);
 
+    bul.resize(Bullet_NUM);
     dood->connect(timer, SIGNAL(timeout()), dood, SLOT(doodle_jump()));
     dood->connect(this, SIGNAL(move_L_signal()), dood, SLOT(move_L()));
     dood->connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R()));
@@ -47,6 +47,16 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
 }
 void MainWindow::shooot()
 {
-    bul = new bullet(scene, 1, dood->doodle_pos_X, dood->doodle_pos_Y);
-    bul->con();
+
+    int count = 0;
+    for (; count <= Bullet_NUM; ++count)
+    {
+        if (count == (Bullet_NUM))
+            return;
+        if (main_bul.bullet_of_number.at(count))
+            break;
+    }
+    main_bul.bullet_of_number.at(count) = false;
+    bul.at(count) = new bullet(scene, 1, dood->doodle_pos_X, dood->doodle_pos_Y, count);
+    bul.at(count)->con();
 }

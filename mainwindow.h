@@ -6,6 +6,7 @@
 #include "bullet.h"
 #include "doodle.h"
 #include "background.h"
+#include "mainbullet.h"
 namespace Ui
 {
     class MainWindow;
@@ -20,6 +21,7 @@ public:
     ~MainWindow();
     void keyPressEvent(QKeyEvent *e);
     void shooot();
+    mainbullet main_bul;
 
 private:
     Ui::MainWindow *ui;
@@ -29,7 +31,7 @@ private:
     QGraphicsItemGroup *group;
     QTimer *timer;
     doodle *dood;
-    bullet *bul;
+    vector<bullet *> bul;
     background *bcgd;
     QGraphicsScene *here;
 

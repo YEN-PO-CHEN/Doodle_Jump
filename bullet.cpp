@@ -1,19 +1,20 @@
 #include "bullet.h"
 
-bullet::bullet(QGraphicsScene *mainwin, const int i, const double X, const double Y) : blt(new QGraphicsPixmapItem),
-                                                                                       X_axis(X),
-                                                                                       Y_axis(Y),
-                                                                                       type(i),
-                                                                                       bullet_pix_type_1(new QPixmap(":/rec/photo/bullet/brown.png")),
-                                                                                       bullet_pix_type_2(new QPixmap(":/rec/photo/bullet/blue.png")),
-                                                                                       blt_time(new QTimer),
-                                                                                       here(mainwin)
+bullet::bullet(QGraphicsScene *mainwin, const int i, const double X, const double Y, const int count) : blt(new QGraphicsPixmapItem),
+                                                                                                        X_axis(X + Doodle_SIZE / 2 - 20),
+                                                                                                        Y_axis(Y),
+                                                                                                        type(i),
+                                                                                                        bullet_pix_type_1(new QPixmap(":/rec/photo/bullet/brown.png")),
+                                                                                                        bullet_pix_type_2(new QPixmap(":/rec/photo/bullet/blue.png")),
+                                                                                                        blt_time(new QTimer),
+                                                                                                        here(mainwin),
+                                                                                                        which_bul(count)
 {
-    blt->setPos(X_axis + Doodle_SIZE / 2 - 20, Y_axis);
+    blt->setPos(X_axis, Y_axis);
     if (type == 1)
-        blt->setPixmap(bullet_pix_type_1->scaled(Doodle_SIZE / 3, Doodle_SIZE / 3));
+        blt->setPixmap(bullet_pix_type_1->scaled(Doodle_SIZE / 4, Doodle_SIZE / 4));
     if (type == 2)
-        blt->setPixmap(bullet_pix_type_1->scaled(Doodle_SIZE / 5, Doodle_SIZE / 5));
+        blt->setPixmap(bullet_pix_type_1->scaled(Doodle_SIZE / 4, Doodle_SIZE / 4));
 
     mainwin->addItem(blt);
 }
@@ -21,10 +22,11 @@ bullet::bullet(QGraphicsScene *mainwin, const int i, const double X, const doubl
 void bullet::fly()
 {
     Y_axis -= 10;
-    blt->setPos(X_axis + 5, Y_axis - 20);
+    blt->setPos(X_axis, Y_axis - 20);
     if (Y_axis < 20)
     {
         this->here->removeItem(blt);
+        main_bul.bullet_of_number.at(which_bul) = true;
         delete this;
     }
 }
