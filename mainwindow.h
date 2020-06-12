@@ -7,6 +7,8 @@
 #include "doodle.h"
 #include "background.h"
 #include "mainbullet.h"
+#include "platform.h"
+#include "platform__build.h"
 namespace Ui
 {
     class MainWindow;
@@ -22,6 +24,8 @@ public:
     void keyPressEvent(QKeyEvent *e);
     void shooot();
     mainbullet _main;
+
+
     void ctor_pltfm();
 
 private:
@@ -40,6 +44,9 @@ signals:
     void move_L_signal();
     void move_R_signal();
     void shoot_W_signal();
+
+public:
+    platform__build *_platform;
 };
 
 #endif // MAINWINDOW_H

@@ -12,17 +12,17 @@ bullet::bullet(QGraphicsScene *mainwin, const int i, const double X, const doubl
 {
     blt->setPos(X_axis, Y_axis);
     if (type == 1)
-        blt->setPixmap(bullet_pix_type_1->scaled(Doodle_SIZE / 4, Doodle_SIZE / 4));
+        blt->setPixmap(bullet_pix_type_1->scaled(Doodle_SIZE / 3, Doodle_SIZE / 3));
     if (type == 2)
-        blt->setPixmap(bullet_pix_type_1->scaled(Doodle_SIZE / 4, Doodle_SIZE / 4));
+        blt->setPixmap(bullet_pix_type_2->scaled(Doodle_SIZE / 3, Doodle_SIZE / 3));
 
     mainwin->addItem(blt);
 }
 
 void bullet::fly()
 {
-    Y_axis -= 10;
-    blt->setPos(X_axis, Y_axis - 20);
+    Y_axis -= 7;
+    blt->setPos(X_axis, Y_axis - 30);
     if (Y_axis < 20)
     {
         this->here->removeItem(blt);
@@ -37,5 +37,5 @@ void bullet::con()
         delete blt_time;
     blt_time = new QTimer;
     connect(blt_time, SIGNAL(timeout()), this, SLOT(fly()));
-    blt_time->start(10);
+    blt_time->start(5);
 }

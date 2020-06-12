@@ -9,8 +9,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
     //constructor
+
     bcgd = new background(scene, 1);
     dood = new doodle(scene, 1);
+
+    //_platform = new platform__build(scene);
     ctor_pltfm();
     bul.resize(Bullet_NUM);
     dood->connect(timer, SIGNAL(timeout()), dood, SLOT(doodle_jump()));
@@ -39,9 +42,9 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
         emit move_R_signal();
         break;
     case Qt::Key_W:
+    case Qt::Key_Up:
         dood->shot();
         shooot();
-
         break;
     }
 }

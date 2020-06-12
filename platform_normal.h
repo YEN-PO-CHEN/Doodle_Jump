@@ -11,8 +11,9 @@ class platform_normal : public platform
 public:
     platform_normal();
     platform_normal(int, int);
-    void put_into_the_scene(int);
-    void add_pix();
+    void put_into_the_scene(int) override;
+    void add_pix() override;
+    void set_x_y() override;
 
 protected:
     QPixmap pix_platform;

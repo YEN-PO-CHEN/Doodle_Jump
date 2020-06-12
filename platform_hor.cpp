@@ -14,3 +14,6 @@ void platform_hor::add_pix()
     pix_platform = QPixmap(":/rec/photo/platform/blue/platform-blue.png");
     pix_platform = pix_platform.scaled(Platform_X_SIZE, Platform_Y_SIZE);
 }
+void platform_hor::set_x_y(){
+    _pltfm.pltfm_QItem.at(plt_now_number)->setPos(X_plt,Y_plt);
+}

@@ -9,15 +9,27 @@
 #include "platform_broken.h"
 #include "platform_hor.h"
 #include "platform_ver.h"
-class platform__build : public QObject, public QGraphicsPixmapItem, public QGraphicsItemGroup
+class platform__build : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    platform__build(QGraphicsScene *, QGraphicsItemGroup *);
+    platform__build(QGraphicsScene *);
+    vector<platform* > v_platform;
 
 private:
     QGraphicsScene *plt_Scene;
-    QGraphicsItemGroup *plt_Group;
+    vector<vector<int>> place{{0, Default_X, Default_Y},
+                              { 1,      180,       550},
+                              { 0,      160,        10},
+                              { 3,      155,        60},
+                              { 0,      149,       524},
+                              { 0,      142,        37},
+                              { 2,      124,       486},
+                              { 0,      100,       300},
+                              { 0,       80,        56},
+                              { 2,       55,       546},
+                              { 3,       40,       251},
+                              { 0,       20,       300}};
 };
 
 #endif // PLATFORM__BUILD_H

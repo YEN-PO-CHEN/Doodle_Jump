@@ -14,3 +14,6 @@ void platform_normal::add_pix()
     pix_platform = QPixmap(":/rec/photo/platform/green/p-green.png");
     pix_platform = pix_platform.scaled(Platform_X_SIZE, Platform_Y_SIZE);
 }
+void platform_normal::set_x_y(){
+    _pltfm.pltfm_QItem.at(plt_now_number)->setPos(X_plt,Y_plt);
+}

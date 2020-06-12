@@ -12,8 +12,9 @@ class platform_hor : public platform
 public:
     platform_hor();
     platform_hor(int, int);
-    void add_pix();
-    void put_into_the_scene(int);
+    void add_pix() override;
+    void put_into_the_scene(int) override;
+    void set_x_y() override;
 
 protected:
     QPixmap pix_platform;
