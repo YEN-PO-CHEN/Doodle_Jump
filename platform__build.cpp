@@ -36,8 +36,5 @@ platform__build::platform__build(QGraphicsScene *I) : plt_Scene(I)
             break;
         }
         }
-
-
-
     }
 }
