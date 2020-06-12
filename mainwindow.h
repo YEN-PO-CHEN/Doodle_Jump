@@ -24,8 +24,6 @@ public:
     void keyPressEvent(QKeyEvent *e);
     void shooot();
     mainbullet _main;
-
-
     void ctor_pltfm();
 
 private:

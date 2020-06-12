@@ -9,9 +9,8 @@ class platform_normal : public platform
 {
     Q_OBJECT
 public:
-    platform_normal();
-    platform_normal(int, int);
-    void put_into_the_scene(int) override;
+    platform_normal(QGraphicsScene *, int, int, int);
+    void put_into_the_scene() override;
     void add_pix() override;
     void set_x_y() override;
 

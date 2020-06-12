@@ -55,6 +55,6 @@ using namespace std;
 ******************/
 
 #define Platform_NUM 12
-#define Platform_Y_SIZE 10
-#define Platform_X_SIZE Platform_Y_SIZE*4
+#define Platform_Y_SIZE 20
+#define Platform_X_SIZE Platform_Y_SIZE * 4
 #endif // _BASIC_H

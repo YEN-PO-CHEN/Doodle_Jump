@@ -10,10 +10,9 @@ class platform_broken : public platform
 {
     Q_OBJECT
 public:
-    platform_broken();
-    platform_broken(int ,int);
+    platform_broken(QGraphicsScene *, int, int, int);
     void add_pix() override;
-    void put_into_the_scene(int) override;
+    void put_into_the_scene() override;
     void set_x_y() override;
 
 protected:

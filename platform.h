@@ -9,10 +9,9 @@ class platform : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    platform();
-    platform(QGraphicsScene *);
-    platform(int, int);
-    virtual void put_into_the_scene(int){};
+
+    platform(QGraphicsScene *,int, int);
+    virtual void put_into_the_scene() = 0;
     virtual void select_which_place();
     virtual void add_pix(){};
     virtual ~platform();
@@ -23,6 +22,7 @@ protected:
     int num_platform = Platform_NUM;
     mainbullet _pltfm;
     int X_plt, Y_plt;
+    int which_is_this;
 };
 
 #endif // PLATFORM_H

@@ -19,7 +19,7 @@ public:
     void shot();
     static bool up_down;
 
- public slots:
+public slots:
     void doodle_jump();
     void move_L();
     void move_R();

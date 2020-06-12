@@ -9,11 +9,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
     //constructor
-
+    _main.pltfm_QItem.resize(Platform_NUM);
+    _main.pltfm_bool.resize(Platform_NUM,true);
     bcgd = new background(scene, 1);
     dood = new doodle(scene, 1);
 
-    //_platform = new platform__build(scene);
+    _platform = new platform__build(scene);
     ctor_pltfm();
     bul.resize(Bullet_NUM);
     dood->connect(timer, SIGNAL(timeout()), dood, SLOT(doodle_jump()));

@@ -1,10 +1,7 @@
 #include "platform.h"
 
-platform::platform(QGraphicsScene *I) : _scene(I)
-{
-}
-platform::platform(int X, int Y) : X_plt(X), Y_plt(Y) {}
-platform::platform() {}
+platform::platform(QGraphicsScene *I, int X, int Y) : _scene(I), X_plt(X), Y_plt(Y) {}
+
 void platform::select_which_place()
 {
     qsrand(QTime(0, 0, 0).secsTo(QTime::currentTime()));

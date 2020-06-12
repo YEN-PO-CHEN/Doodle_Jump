@@ -10,10 +10,9 @@ class platform_hor : public platform
 {
     Q_OBJECT
 public:
-    platform_hor();
-    platform_hor(int, int);
+    platform_hor(QGraphicsScene *, int, int, int);
     void add_pix() override;
-    void put_into_the_scene(int) override;
+    void put_into_the_scene() override;
     void set_x_y() override;
 
 protected:
