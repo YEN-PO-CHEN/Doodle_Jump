@@ -32,9 +32,8 @@ doodle::doodle(QGraphicsScene *mainwin, int i) : ps_R(0),
 }
 //Y
 bool doodle::judge() //collide
-{
-
-    bool test = false;
+ㄑFFF
+    ㄑ bool test = false;
     if (up_or_down)  //upup
         return test; //no collide
     //down
@@ -60,71 +59,56 @@ void doodle::change() //Y
     jump = 101 - jump;
     emit platform_move(Y_to_stay, jump);
 }
-/*
-void doodle::doodle_jump() //Y
-{
 
-    if (jump == 100)
-    {
-        jump = 0;
-        return;
-    }
-    t = jump % Doodle_Jump_time_int;
-    if (t == 0)
-        doodle_pos_Y = Default_Y;
-    if (t > (Doodle_Jump_time_int / 2))
-    {
-        int k = t;
-        k -= (Doodle_Jump_time_int / 2);
-        double t_t = 2 * k + 1;
-        double temp = (Doodle_vertical_acc * t_t) / 2.0;
-        doodle_pos_Y += temp * (100.0 / Doodle_Jump_time);
-        up_or_down = true;
-    }
-    else
-    {
-        double t_t = -1 * 2 * (t - (Doodle_Jump_time_int / 2) + 1) + 1;
-        double temp = (Doodle_vertical_acc * t_t) / 2.0;
-        doodle_pos_Y -= temp * (100.0 / Doodle_Jump_time);
-        up_or_down = false;
-    }
-    ++jump;
-}*/
 bool doodle::check_place() //Y check
 {
     sync_status();
     if (player->y() > DOODLE_HIGH)
+    {             // > 600
+        jump = 1; //1-50
         up_down = true;
-
-    if (player->y() < DOODLE_LOW + 10)
-        up_down = false;
-    //up
-    if (up_down)      //
-        return false; //upup
+    }
+    if (player->y() < DOODLE_LOW) // < 200
+    {
+        jump = 51;       //51-100
+        up_down = false; //need to down
+    }
+    if (!up_down)
+        lowlow(); //need to down
     else
-        return true; //down
+        upup(); //need to jump
+    return 0;
 }
 void doodle::r_doodle_jump() //revise Y jump
 {
-    jump++;
-    jump %= Doodle_Jump_time_int;
-    if (check_place())
-        lowlow(); //down
-    else
-        upup(); //up
+    jump++; //1-100
+    check_place();
+    return;
 }
 void doodle::upup() //Y up
 {
-    int t = (jump % (Doodle_Jump_time_int / 2));
+    int t = (jump % (Doodle_Jump_time_int / 2)); //1-50
+    t = 50 - t;
     doodle_pos_Y -= (DOODLE_ACC / 2) * (2 * t + 1);
     up_down = true;
+    if (jump == 50)
+    {
+        doodle_pos_Y = DOODLE_LOW - 1;
+        up_down = false;
+    }
 }
 void doodle::lowlow() //Y down
 {
-    int t = jump % (Doodle_Jump_time_int / 2);
-    t = 49 - t;
-    doodle_pos_Y += (DOODLE_ACC / 2) * (2 * t + 1);
+    //51-100
+    int k = jump - 50;
+    doodle_pos_Y += (DOODLE_ACC / 2) * (2 * (k - 1) + 1);
     up_down = false;
+    if (jump == 100)
+    {
+        doodle_pos_Y = DOODLE_HIGH + 1;
+        jump = 0;
+        up_down = true;
+    }
 }
 //X
 void doodle::move_R() //X
@@ -200,7 +184,6 @@ void doodle::doodle_test() //X check
         doodle_pos_X += Doodle_SIZE / 2;
     }
 }
-
 //shot
 void doodle::shot()
 {

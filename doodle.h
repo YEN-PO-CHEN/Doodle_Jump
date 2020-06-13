@@ -29,6 +29,7 @@ public:
     //void doodle_jump();
     //void difference_doodle_jump();
     int t;
+    int d = 0;
 signals:
     void platform_move(int, int);
 public slots:
