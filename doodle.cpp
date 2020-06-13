@@ -192,5 +192,6 @@ void doodle::shot()
 }
 void doodle::aftershot() { player->setPixmap(doodle_pix_type_1[1]); }
 
+
 //X_Y
 void doodle::sync_status() { player->setPos(doodle_pos_X, doodle_pos_Y); }
