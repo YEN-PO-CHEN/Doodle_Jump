@@ -30,8 +30,8 @@ doodle::doodle(QGraphicsScene *mainwin, int i) : ps_R(0),
     sync_time->start(1);
     connect(sync_time, SIGNAL(timeout()), this, SLOT(sync_status()));
 }
-
-bool doodle::judge()
+//Y
+bool doodle::judge() //collide
 {
 
     bool test = false;
@@ -43,51 +43,25 @@ bool doodle::judge()
         test = player->collidesWithItem(_main.pltfm_QItem.at(tt), Qt::IntersectsItemShape);
         if (test)
         {
-            Y_to_stay = _main.pltfm_QItem.at(tt)->y() - Default_Y;
-            cout << Y_to_stay;
+            Y_to_stay = Default_Y - _main.pltfm_QItem.at(tt)->y();
+            break;
         }
     }
     return test;
 }
-void doodle::to_jump()
+void doodle::to_jump() //Y
 {
-    if (!judge())
-        doodle_jump();
-    else
-    {
-        difference_doodle_jump();
-        //emit platform_move();
-    }
-    return;
+    if (judge())
+        change();
+    r_doodle_jump();
 }
-void doodle::difference_doodle_jump()
+void doodle::change() //Y
 {
-    doodle_pos_Y += Y_to_stay;
-    --jump;
-    t = jump % Doodle_Jump_time_int;
-    if (t == 0)
-    {
-        doodle_pos_Y = Default_Y;
-    }
-    if (t > (Doodle_Jump_time_int / 2))
-    {
-        up_or_down = false;
-        int k = t;
-        k -= (Doodle_Jump_time_int / 2);
-        double t_t = 2 * k - 1;
-        double temp = (Doodle_vertical_acc * t_t) / 2.0;
-        doodle_pos_Y -= temp * (100.0 / Doodle_Jump_time);
-    }
-    else
-    {
-        up_or_down = true;
-        int k = t;
-        double t_t = 1 * 2 * (k - (Doodle_Jump_time_int / 2) + 1) + 1;
-        double temp = (Doodle_vertical_acc * t_t) / 2.0;
-        doodle_pos_Y += temp * (100.0 / Doodle_Jump_time);
-    }
+    jump = 101 - jump;
+    emit platform_move(Y_to_stay, jump);
 }
-void doodle::doodle_jump()
+/*
+void doodle::doodle_jump() //Y
 {
 
     if (jump == 100)
@@ -115,9 +89,55 @@ void doodle::doodle_jump()
         up_or_down = false;
     }
     ++jump;
-}
+}*/
+bool doodle::check_place() //Y check
+{
+    sync_status();
+    if (player->y() > DOODLE_HIGH)
+        up_down = true;
 
-void doodle::move_L()
+    if (player->y() < DOODLE_LOW + 10)
+        up_down = false;
+    //up
+    if (up_down)      //
+        return false; //upup
+    else
+        return true; //down
+}
+void doodle::r_doodle_jump() //revise Y jump
+{
+    jump++;
+    jump %= Doodle_Jump_time_int;
+    if (check_place())
+        lowlow(); //down
+    else
+        upup(); //up
+}
+void doodle::upup() //Y up
+{
+    int t = (jump % (Doodle_Jump_time_int / 2));
+    doodle_pos_Y -= (DOODLE_ACC / 2) * (2 * t + 1);
+    up_down = true;
+}
+void doodle::lowlow() //Y down
+{
+    int t = jump % (Doodle_Jump_time_int / 2);
+    t = 49 - t;
+    doodle_pos_Y += (DOODLE_ACC / 2) * (2 * t + 1);
+    up_down = false;
+}
+//X
+void doodle::move_R() //X
+{
+    ++push_time_R;
+    player->setPixmap(doodle_pix_type_1[1]);
+    doodle_test();
+    doodle_pos_X += Move_By;
+    horizon_intercial(false);
+    doodle_test();
+    player->setX(doodle_pos_X);
+}
+void doodle::move_L() //X
 {
     ++push_time_L;
     player->setPixmap(doodle_pix_type_1[0]);
@@ -128,17 +148,7 @@ void doodle::move_L()
     player->setX(doodle_pos_X);
 }
 
-void doodle::move_R()
-{
-    ++push_time_R;
-    player->setPixmap(doodle_pix_type_1[1]);
-    doodle_test();
-    doodle_pos_X += Move_By;
-    horizon_intercial(false);
-    doodle_test();
-    player->setX(doodle_pos_X);
-}
-void doodle::horizon_intercial(bool direction)
+void doodle::horizon_intercial(bool direction) //X
 {
     if (direction)
         L_R = -1;
@@ -153,7 +163,7 @@ void doodle::horizon_intercial(bool direction)
     hor_int->start(10);
     connect(hor_int, SIGNAL(timeout()), this, SLOT(ho_in()));
 }
-void doodle::ho_in()
+void doodle::ho_in() //X inertia
 {
     time++;
     if (time >= Doodle_horizonal_run)
@@ -177,8 +187,7 @@ void doodle::ho_in()
     doodle_pos_X += position;
     doodle_test();
 }
-
-void doodle::doodle_test()
+void doodle::doodle_test() //X check
 {
     if (doodle_pos_X >= Scene_X - Doodle_SIZE * 0.5)
     {
@@ -192,12 +201,13 @@ void doodle::doodle_test()
     }
 }
 
+//shot
 void doodle::shot()
 {
     this->player->setPixmap(doodle_pix_type_1[2]);
     QTimer::singleShot(150, this, SLOT(aftershot()));
 }
-
 void doodle::aftershot() { player->setPixmap(doodle_pix_type_1[1]); }
 
+//X_Y
 void doodle::sync_status() { player->setPos(doodle_pos_X, doodle_pos_Y); }

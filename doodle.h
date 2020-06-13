@@ -13,6 +13,11 @@ public:
     void horizon_intercial(bool direction);
     void doodle_test();
     bool judge();
+    bool check_place();
+    void r_doodle_jump();
+    void lowlow();
+    void upup();
+    void change();
     int ps_R;
     int ps_L;
     double doodle_pos_X;
@@ -21,10 +26,11 @@ public:
     static bool up_down;
     mainbullet _main;
     int Y_to_stay = 0;
-    void doodle_jump();
-    void difference_doodle_jump();
+    //void doodle_jump();
+    //void difference_doodle_jump();
     int t;
-
+signals:
+    void platform_move(int, int);
 public slots:
     void to_jump();
     void move_L();

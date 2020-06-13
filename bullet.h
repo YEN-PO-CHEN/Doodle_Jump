@@ -16,7 +16,6 @@ public:
 
 protected:
     double X_axis, Y_axis;
-
     int type;
     QPixmap *bullet_pix_type_1;
     QPixmap *bullet_pix_type_2;

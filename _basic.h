@@ -45,6 +45,11 @@ using namespace std;
 #define Doodle_per_push 0.01
 #define Move_By 10
 
+#define DOODLE_HIGH 600
+#define DOODLE_LOW 200
+#define DOODLE_ACC (DOODLE_HIGH - DOODLE_LOW) * 0.0008
+#define DOODLE_VEL DOODLE_ACC*Doodle_Jump_time
+
 /******************
  * BULLET
 ******************/

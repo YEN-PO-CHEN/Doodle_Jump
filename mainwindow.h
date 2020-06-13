@@ -9,6 +9,7 @@
 #include "mainbullet.h"
 #include "platform.h"
 #include "platform__build.h"
+#include "platform__recreate.h"
 namespace Ui
 {
     class MainWindow;
@@ -45,6 +46,7 @@ signals:
 
 public:
     platform__build *_platform;
+    platform__recreate *_plarform_re;
 };
 
 #endif // MAINWINDOW_H

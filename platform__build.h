@@ -19,6 +19,24 @@ public:
 private:
     QGraphicsScene *plt_Scene;
     vector<vector<int>> place{{ 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50},
+                              { 0, Default_X, Default_Y+50}};
+
+
+};
+
+#endif // PLATFORM__BUILD_H
+/*
+ * vector<vector<int>> place{{ 0, Default_X, Default_Y+50},
                               { 1,       180,       550},
                               { 0,        30,       426},
                               { 3,       255,       394},
@@ -30,6 +48,4 @@ private:
                               { 2,       195,       102},
                               { 3,        40,        58},
                               { 0,       480,        20}};
-};
-
-#endif // PLATFORM__BUILD_H
+*/
