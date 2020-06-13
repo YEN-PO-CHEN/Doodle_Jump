@@ -18,18 +18,18 @@ public:
 
 private:
     QGraphicsScene *plt_Scene;
-    vector<vector<int>> place{{ 0, Default_X, Default_Y},
+    vector<vector<int>> place{{ 0, Default_X, Default_Y+50},
                               { 1,       180,       550},
                               { 0,        30,       426},
-                              { 3,       155,       394},
+                              { 3,       255,       394},
                               { 0,        11,       364},
                               { 0,       132,       329},
-                              { 2,        54,       288},
+                              { 2,       354,       288},
                               { 0,       100,       200},
-                              { 0,        80,       154},
-                              { 2,       105,       102},
+                              { 0,       280,       154},
+                              { 2,       195,       102},
                               { 3,        40,        58},
-                              { 0,       120,        20}};
+                              { 0,       480,        20}};
 };
 
 #endif // PLATFORM__BUILD_H

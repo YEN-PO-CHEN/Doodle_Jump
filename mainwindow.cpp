@@ -10,14 +10,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->graphicsView->setScene(scene);
     //constructor
     _main.pltfm_QItem.resize(Platform_NUM);
-    _main.pltfm_bool.resize(Platform_NUM,true);
+    _main.pltfm_bool.resize(Platform_NUM, true);
     bcgd = new background(scene, 1);
     dood = new doodle(scene, 1);
 
     _platform = new platform__build(scene);
     ctor_pltfm();
     bul.resize(Bullet_NUM);
-    dood->connect(timer, SIGNAL(timeout()), dood, SLOT(doodle_jump()));
+    dood->connect(timer, SIGNAL(timeout()), dood, SLOT(to_jump()));
     dood->connect(this, SIGNAL(move_L_signal()), dood, SLOT(move_L()));
     dood->connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R()));
     timer->start(10);

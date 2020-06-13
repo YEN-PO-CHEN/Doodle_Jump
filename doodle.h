@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QWidget>
 #include "_basic.h"
-
+#include "mainbullet.h"
 class doodle : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -12,15 +12,21 @@ public:
     doodle(QGraphicsScene *mainwin, int i);
     void horizon_intercial(bool direction);
     void doodle_test();
+    bool judge();
     int ps_R;
     int ps_L;
     double doodle_pos_X;
     double doodle_pos_Y;
     void shot();
     static bool up_down;
+    mainbullet _main;
+    int Y_to_stay = 0;
+    void doodle_jump();
+    void difference_doodle_jump();
+    int t;
 
 public slots:
-    void doodle_jump();
+    void to_jump();
     void move_L();
     void move_R();
     void ho_in();
@@ -46,6 +52,7 @@ protected:
     QPixmap doodle_pix_type_2[3];
     QPixmap *bullet_type_1;
     QPixmap *bullet_type_2;
+    bool up_or_down = true; //true is up
 
     int k = 0;
 };

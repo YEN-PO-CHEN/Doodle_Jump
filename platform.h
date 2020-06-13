@@ -9,8 +9,7 @@ class platform : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-
-    platform(QGraphicsScene *,int, int);
+    platform(QGraphicsScene *, int, int);
     virtual void put_into_the_scene() = 0;
     virtual void select_which_place();
     virtual void add_pix(){};

@@ -14,7 +14,6 @@ void platform_normal::set_x_y()
 }
 void platform_normal::put_into_the_scene()
 {
-
     _pltfm.pltfm_QItem.at(plt_now_number)->setPos(X_plt, Y_plt);
     _pltfm.pltfm_QItem.at(plt_now_number)->setPixmap(pix_platform);
     _pltfm.pltfm_bool.at(plt_now_number) = false;

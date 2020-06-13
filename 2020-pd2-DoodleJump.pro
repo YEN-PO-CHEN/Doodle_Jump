@@ -32,6 +32,7 @@ SOURCES += \
         mainwindow.cpp \
         platform.cpp \
         platform__build.cpp \
+        platform__recreate.cpp \
         platform_broken.cpp \
         platform_hor.cpp \
         platform_normal.cpp \
@@ -46,6 +47,7 @@ HEADERS += \
         mainwindow.h \
         platform.h \
         platform__build.h \
+        platform__recreate.h \
         platform_broken.h \
         platform_hor.h \
         platform_normal.h \
