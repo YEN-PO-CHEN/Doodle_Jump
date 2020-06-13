@@ -11,6 +11,7 @@
 #include "platform_hor.h"
 #include "platform_ver.h"
 
+
 class platform__recreate : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
