@@ -3,7 +3,6 @@
 platform_ver::platform_ver(QGraphicsScene *scene, int X, int Y, int mm) : platform(scene, X, Y),ver_time(new QTimer), plt_now_number(mm) {
     add_pix();
     connect(ver_time,SIGNAL(timeout()),this,SLOT(move()));
-
 }
 void platform_ver::add_pix()
 {

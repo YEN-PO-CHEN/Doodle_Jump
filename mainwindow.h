@@ -27,6 +27,10 @@ public:
     mainbullet _main;
     void ctor_pltfm();
 
+    void ver(int);
+    void hor(int);
+    vector<int> vec_v;
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
@@ -43,6 +47,8 @@ signals:
     void move_L_signal();
     void move_R_signal();
     void shoot_W_signal();
+public slots:
+    void platform_is_moving();
 
 public:
     platform__build *_platform;

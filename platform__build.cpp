@@ -12,24 +12,29 @@ platform__build::platform__build(QGraphicsScene *I) : plt_Scene(I)
         case 1:
         {
             platform_broken pla_a(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
+            _main.pltfm_bool.at(mm) = 1;
             v_platform.at(mm) = &pla_a;
             break;
         }
         case 2:
         {
             platform_ver pla_b(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
+            _main.pltfm_bool.at(mm) = 2;
             v_platform.at(mm) = &pla_b;
+
             break;
         }
         case 3:
         {
             platform_hor pla_c(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
+            _main.pltfm_bool.at(mm) = 3;
             v_platform.at(mm) = &pla_c;
             break;
         }
         case 0:
         {
             platform_normal pla_d(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
+            _main.pltfm_bool.at(mm) = 0;
             v_platform.at(mm) = &pla_d;
             break;
         }

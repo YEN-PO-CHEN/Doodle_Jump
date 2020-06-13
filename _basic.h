@@ -59,7 +59,7 @@ using namespace std;
  * PLATFORM
 ******************/
 
-#define Platform_NUM 20
+#define Platform_NUM 15
 #define Platform_Y_SIZE 20
 #define Platform_X_SIZE Platform_Y_SIZE * 4
 #endif // _BASIC_H
