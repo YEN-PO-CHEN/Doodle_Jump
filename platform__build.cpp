@@ -11,7 +11,6 @@ platform__build::platform__build(QGraphicsScene *I) : plt_Scene(I)
         {
         case 1:
         {
-
             platform_broken pla_a(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
             v_platform.at(mm) = &pla_a;
             break;

@@ -46,7 +46,7 @@ signals:
 
 public:
     platform__build *_platform;
-    platform__recreate *_plarform_re;
+    platform__recreate *_platform_re;
 };
 
 #endif // MAINWINDOW_H

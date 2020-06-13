@@ -6,10 +6,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           group(new QGraphicsItemGroup),
                                           timer(new QTimer(this))
 {
+    srand(time(NULL));
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
     //constructor
-    _plarform_re = new platform__recreate(scene);
+    _platform_re = new platform__recreate(scene);
     _main.pltfm_QItem.resize(Platform_NUM);
     _main.pltfm_bool.resize(Platform_NUM, true);
     bcgd = new background(scene, 1);
@@ -21,8 +22,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     dood->connect(timer, SIGNAL(timeout()), dood, SLOT(to_jump()));
     dood->connect(this, SIGNAL(move_L_signal()), dood, SLOT(move_L()));
     dood->connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R()));
-    connect(dood, SIGNAL(platform_move(int, int)), _plarform_re, SLOT(move_the_platform(int, int)));
-    _plarform_re->connect(_plarform_re->timer, SIGNAL(timeout()), _plarform_re, SLOT(plat_move()));
+    connect(dood, SIGNAL(platform_move(int, int)), _platform_re, SLOT(move_the_platform(int, int)));
+    _platform_re->connect(_platform_re->timer, SIGNAL(timeout()), _platform_re, SLOT(plat_move()));
 
     timer->start(10);
 }

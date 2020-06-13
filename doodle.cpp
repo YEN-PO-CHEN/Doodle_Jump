@@ -41,7 +41,6 @@ bool doodle::judge() //collide
         test = player->collidesWithItem(_main.pltfm_QItem.at(tt));
         if (test)
         {
-            cout << "true ";
             Y_to_stay = Default_Y - _main.pltfm_QItem.at(tt)->y();
             break;
         }
@@ -50,9 +49,11 @@ bool doodle::judge() //collide
 }
 void doodle::to_jump() //Y
 {
-    r_doodle_jump();
     if (judge())
         change();
+
+    r_doodle_jump();
+
 }
 void doodle::change() //Y
 {
@@ -168,7 +169,6 @@ void doodle::ho_in() //X inertia
         --push_time_L;
     double vel = L_R * Doodle_horizonal_vel - (push_time_R - push_time_L) * Doodle_per_push * Doodle_vertical_acc;
     double acc = vel / Doodle_horizonal_run;
-
     position = vel - (acc / 2) * (2 * this->time + 1);
     doodle_pos_X += position;
     doodle_test();
