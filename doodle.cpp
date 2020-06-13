@@ -32,8 +32,8 @@ doodle::doodle(QGraphicsScene *mainwin, int i) : ps_R(0),
 }
 //Y
 bool doodle::judge() //collide
-ㄑFFF
-    ㄑ bool test = false;
+{
+    bool test = false;
     if (up_or_down)  //upup
         return test; //no collide
     //down
@@ -191,7 +191,6 @@ void doodle::shot()
     QTimer::singleShot(150, this, SLOT(aftershot()));
 }
 void doodle::aftershot() { player->setPixmap(doodle_pix_type_1[1]); }
-
 
 //X_Y
 void doodle::sync_status() { player->setPos(doodle_pos_X, doodle_pos_Y); }
