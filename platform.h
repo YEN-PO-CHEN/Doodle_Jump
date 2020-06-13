@@ -12,7 +12,7 @@ public:
     platform(QGraphicsScene *, int, int);
     virtual void put_into_the_scene() = 0;
     virtual void select_which_place();
-    virtual void add_pix(){};
+    virtual void add_pix(){}
     virtual ~platform();
     virtual void set_x_y() = 0;
 
@@ -22,6 +22,10 @@ protected:
     mainbullet _pltfm;
     int X_plt, Y_plt;
     int which_is_this;
+    QTimer *_time_;
+
+public slots:
+    virtual void move() = 0;
 };
 
 #endif // PLATFORM_H

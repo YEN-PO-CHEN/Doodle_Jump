@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     _main.pltfm_bool.resize(Platform_NUM, true);
     bcgd = new background(scene, 1);
     dood = new doodle(scene, 1);
-
     _platform = new platform__build(scene);
     ctor_pltfm();
     bul.resize(Bullet_NUM);
@@ -24,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     dood->connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R()));
     connect(dood, SIGNAL(platform_move(int, int,int)), _platform_re, SLOT(move_the_platform(int, int,int)));
     _platform_re->connect(_platform_re->timer, SIGNAL(timeout()), _platform_re, SLOT(plat_move()));
-
     timer->start(10);
 }
 

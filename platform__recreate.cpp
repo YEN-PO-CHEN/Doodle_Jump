@@ -1,10 +1,5 @@
 #include "platform__recreate.h"
-
-platform__recreate::platform__recreate(QGraphicsScene *I) : _scene(I), timer(new QTimer)
-{
-    v_platform.resize(Platform_NUM);
-}
-
+platform__recreate::platform__recreate(QGraphicsScene *I) : _scene(I), timer(new QTimer){ v_platform.resize(Platform_NUM); }
 void platform__recreate::move_the_platform(int A, int B,int C)
 {
     length = A;
@@ -13,14 +8,9 @@ void platform__recreate::move_the_platform(int A, int B,int C)
     vel = length / time_t;
     timer->start(5);
 }
-
 void platform__recreate::plat_move()
 {
-    if(_main->pltfm_QItem.at(now_item)->y() > Default_Y)
-    {
-        cout<<_main->pltfm_QItem.at(now_item)->y()<<endl;
-        timer->stop();
-    }
+    if(_main->pltfm_QItem.at(now_item)->y() > Default_Y){ timer->stop(); }
     for (int a = 0; a < Platform_NUM; ++a)
     {
         int m = _main->pltfm_QItem.at(a)->y() + vel;
@@ -28,14 +18,12 @@ void platform__recreate::plat_move()
     }
     plt_count();
 }
-
 void platform__recreate::plt_count()
 {
     for (int plt_num = 0; plt_num < Platform_NUM; ++plt_num)
         if (_main->pltfm_QItem.at(plt_num)->y() > Scene_Y)
             plt_recreate(plt_num);
 }
-
 void platform__recreate::plt_recreate(int I)
 {
     int K = I;

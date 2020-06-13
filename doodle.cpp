@@ -33,7 +33,7 @@ bool doodle::judge() //collide
     bool test = false;
     if (up_down)
     {
-        cout << "up_down = true" << endl;
+
         return false;
     } //no collide
     //down
@@ -94,7 +94,6 @@ void doodle::r_doodle_jump() //revise Y jump
     jump++; //1-100
     check_place();
     player->setPos(doodle_pos_X, doodle_pos_Y);
-    cout << " " << doodle_pos_X << " " << doodle_pos_Y << endl;
     return;
 }
 void doodle::upup() //Y up
