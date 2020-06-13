@@ -28,8 +28,9 @@ public:
     int Y_to_stay = 0;
     int t;
     int d = 0;
+    int now_co;
 signals:
-    void platform_move(int, int);
+    void platform_move(int, int,int);
 public slots:
     void to_jump();
     void move_L();

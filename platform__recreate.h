@@ -25,8 +25,9 @@ public:
 
     void plt_recreate(int);
     void plt_count();
+
 public slots:
-    void move_the_platform(int, int);
+    void move_the_platform(int, int,int);
     void plat_move();
 signals:
     void resetitem(int);
@@ -34,6 +35,7 @@ protected:
     int length;
     int time_t;
     double vel;
+    int now_item;
 };
 
 #endif // PLATFORM__RECREATE_H

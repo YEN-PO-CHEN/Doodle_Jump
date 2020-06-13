@@ -33,15 +33,25 @@ bool doodle::judge() //collide
     bool test = false;
     if (up_down)
     {
+        cout << "up_down = true" << endl;
         return false;
     } //no collide
     //down
     for (int tt = 0; tt < Platform_NUM; ++tt)
     {
         test = player->collidesWithItem(_main.pltfm_QItem.at(tt));
+        if (!test)
+            continue;
+        int YY = (_main.pltfm_QItem.at(tt)->y() - player->y());
+        int XX = (player->x() - _main.pltfm_QItem.at(tt)->x());
+        if (YY < 0.5 * (Doodle_SIZE))
+            test = false;
+        if (XX > (Platform_X_SIZE) || XX < (-0.8) * (Doodle_SIZE))
+            test = false;
         if (test)
         {
             Y_to_stay = Default_Y - _main.pltfm_QItem.at(tt)->y();
+            now_co = tt;
             break;
         }
     }
@@ -53,12 +63,12 @@ void doodle::to_jump() //Y
         change();
 
     r_doodle_jump();
-
 }
 void doodle::change() //Y
 {
+    up_down = true;
+    emit platform_move(Y_to_stay, jump, now_co);
     jump = 101 - jump;
-    emit platform_move(Y_to_stay, jump);
 }
 
 bool doodle::check_place() //Y check
@@ -83,8 +93,9 @@ void doodle::r_doodle_jump() //revise Y jump
 {
     jump++; //1-100
     check_place();
-    return;
     player->setPos(doodle_pos_X, doodle_pos_Y);
+    cout << " " << doodle_pos_X << " " << doodle_pos_Y << endl;
+    return;
 }
 void doodle::upup() //Y up
 {
