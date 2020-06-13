@@ -2,7 +2,6 @@
 
 platform__build::platform__build(QGraphicsScene *I) : plt_Scene(I)
 {
-
     v_platform.resize(Platform_NUM);
     for (int mm = 0; mm < Platform_NUM; ++mm)
     {

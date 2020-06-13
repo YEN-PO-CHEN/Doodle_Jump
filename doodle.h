@@ -26,8 +26,6 @@ public:
     static bool up_down;
     mainbullet _main;
     int Y_to_stay = 0;
-    //void doodle_jump();
-    //void difference_doodle_jump();
     int t;
     int d = 0;
 signals:
@@ -38,7 +36,7 @@ public slots:
     void move_R();
     void ho_in();
     void aftershot();
-    void sync_status();
+
 
 protected:
     int type = 0;
@@ -54,7 +52,6 @@ protected:
     QGraphicsPixmapItem *player;
     QTimer *hor_int;
     QTimer *bullet_timer;
-    QTimer *sync_time;
     QPixmap doodle_pix_type_1[3];
     QPixmap doodle_pix_type_2[3];
     QPixmap *bullet_type_1;

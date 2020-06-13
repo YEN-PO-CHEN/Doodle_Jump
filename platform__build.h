@@ -19,33 +19,21 @@ public:
 private:
     QGraphicsScene *plt_Scene;
     vector<vector<int>> place{{ 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50},
-                              { 0, Default_X, Default_Y+50}};
+                                  { 1,       0,       550},
+                                  { 0,        0,       426},
+                                  { 3,       0,       394},
+                                  { 0,        0,       364},
+                                  { 0,       0,       329},
+                                  { 2,       0,       288},
+                                  { 0,       0,       200},
+                                  { 0,       0,       154},
+                                  { 2,       0,       102},
+                                  { 3,       0,        58},
+                                  { 0, 0,        20}};
 
 
 };
-
 #endif // PLATFORM__BUILD_H
 /*
- * vector<vector<int>> place{{ 0, Default_X, Default_Y+50},
-                              { 1,       180,       550},
-                              { 0,        30,       426},
-                              { 3,       255,       394},
-                              { 0,        11,       364},
-                              { 0,       132,       329},
-                              { 2,       354,       288},
-                              { 0,       100,       200},
-                              { 0,       280,       154},
-                              { 2,       195,       102},
-                              { 3,        40,        58},
-                              { 0,       480,        20}};
+ *
 */

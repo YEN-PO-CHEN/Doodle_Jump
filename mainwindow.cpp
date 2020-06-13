@@ -15,15 +15,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     bcgd = new background(scene, 1);
     dood = new doodle(scene, 1);
 
-
     _platform = new platform__build(scene);
     ctor_pltfm();
     bul.resize(Bullet_NUM);
     dood->connect(timer, SIGNAL(timeout()), dood, SLOT(to_jump()));
     dood->connect(this, SIGNAL(move_L_signal()), dood, SLOT(move_L()));
     dood->connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R()));
-    connect(dood,SIGNAL(platform_move(int)),_plarform_re,SLOT(move_the_platform(int)));
-    connect(dood,SIGNAL(platform_time(int)),_plarform_re,SLOT(move_time(int)));
+    connect(dood, SIGNAL(platform_move(int, int)), _plarform_re, SLOT(move_the_platform(int, int)));
+    _plarform_re->connect(_plarform_re->timer, SIGNAL(timeout()), _plarform_re, SLOT(plat_move()));
+
     timer->start(10);
 }
 
