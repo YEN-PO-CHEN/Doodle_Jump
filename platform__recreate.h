@@ -11,7 +11,6 @@
 #include "platform_hor.h"
 #include "platform_ver.h"
 
-
 class platform__recreate : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -27,19 +26,20 @@ public:
     void plt_count();
 
 public slots:
-    void move_the_platform(int, int,int);
+    void move_the_platform(int, int, int);
     void plat_move();
     void start_move();
 signals:
     void resetitem(int);
     void restart();
+
 protected:
     int length;
     int time_t;
     int time_s;
-    double vel;
+    float vel;
     int now_item;
-    double a;
+    float a;
 };
 
 #endif // PLATFORM__RECREATE_H

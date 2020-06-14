@@ -12,7 +12,7 @@ public:
     platform(QGraphicsScene *, int, int);
     virtual void put_into_the_scene() = 0;
     virtual void select_which_place();
-    virtual void add_pix(){}
+    virtual void add_pix() {}
     virtual ~platform();
     virtual void set_x_y() = 0;
 

@@ -15,6 +15,7 @@ public:
     void set_x_y() override;
 public slots:
     void move() override;
+
 protected:
     int type = 0;
     QPixmap pix_platform;

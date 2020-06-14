@@ -3,15 +3,14 @@
 
 #include "_basic.h"
 #include "monster.h"
-class monster3:public monster
+class monster3 : public monster
 {
     Q_OBJECT
 public:
-    monster3(QGraphicsScene*);
+    monster3(QGraphicsScene *);
 
 protected:
     QPixmap mn3;
 };
-
 
 #endif // MONSTER3_H

@@ -47,8 +47,8 @@ using namespace std;
 
 #define DOODLE_HIGH 600
 #define DOODLE_LOW 200
-#define DOODLE_ACC (DOODLE_HIGH - DOODLE_LOW) * 0.0008
-#define DOODLE_VEL DOODLE_ACC*Doodle_Jump_time
+#define DOODLE_ACC 0.32
+#define DOODLE_VEL 16
 
 /******************
  * BULLET

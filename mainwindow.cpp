@@ -5,35 +5,37 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           scene(new QGraphicsScene(0, 0, Scene_X, Scene_Y)),
                                           group(new QGraphicsItemGroup),
                                           timer(new QTimer(this)),
-                                          _timer(new QTimer(this))
+                                          _timer(new QTimer(this)),
+                                          start_moving_pla_timer(new QTimer)
 {
     srand(time(NULL));
-    vec_v.resize(Platform_NUM,0);
+    vec_v.resize(Platform_NUM, 0);
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
+    //vector
+    ctor_pltfm();
+    bul.resize(Bullet_NUM);
     //constructor
     _platform_re = new platform__recreate(scene);
-    _main.pltfm_QItem.resize(Platform_NUM);
-    _main.pltfm_bool.resize(Platform_NUM, true);
     bcgd = new background(scene, 1);
     dood = new doodle(scene, 1);
     _platform = new platform__build(scene);
-    ctor_pltfm();
-    bul.resize(Bullet_NUM);
-    dood->connect(timer, SIGNAL(timeout()), dood, SLOT(to_jump()));
-    connect(_timer,SIGNAL(timeout()),this,SLOT(platform_is_moving()));
-    dood->connect(this, SIGNAL(move_L_signal()), dood, SLOT(move_L()));
-    dood->connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R()));
-    dood->connect(dood,SIGNAL(to_stop_jump()),this,SLOT(stop_timer()));
-    connect(dood, SIGNAL(platform_move(int, int,int)), _platform_re, SLOT(move_the_platform(int, int,int)));
-    _platform_re->connect(_platform_re->timer, SIGNAL(timeout()), _platform_re, SLOT(plat_move()));
-    _platform_re->connect(_platform_re, SIGNAL(re_stop()), dood, SLOT(do_stop()));
-    connect(this,SIGNAL(start_moving_pla()),_platform_re,SLOT(start_move()));
-    connect(_platform_re,SIGNAL(restart()),dood,SLOT(timer_restart()));
-    connect(_platform_re,SIGNAL(restart()),this,SLOT(restart_timer()));
+
+    //X - axis
+    connect(this, SIGNAL(move_L_signal()), dood, SLOT(move_L()));
+    connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R()));
+
+    connect(_timer, SIGNAL(timeout()), this, SLOT(platform_is_moving())); //平板移動
+    connect(_platform_re, SIGNAL(restart()), this, SLOT(restart_timer()));
     timer->start(10);
     _timer->start(10);
-    platform_is_moving();
+    connect(timer, SIGNAL(timeout()), dood, SLOT(jump_j()));
+    connect(dood, SIGNAL(main_window_signal(int)), this, SLOT(stop_timer(int)));
+    connect(dood, SIGNAL(mainwindow_start_time()), this, SLOT(restart_timer()));
+
+    //move plat
+    connect(start_moving_pla_timer, SIGNAL(timeout()), this, SLOT(move_the_platform()));
+    connect(this, SIGNAL(stop_this()), this, SLOT(restart_timer()));
 }
 
 MainWindow::~MainWindow()
@@ -81,40 +83,59 @@ void MainWindow::ctor_pltfm()
     _main.pltfm_bool.resize(Platform_NUM, true);
     _main.pltfm_QItem.resize(Platform_NUM);
 }
-
-void MainWindow::platform_is_moving(){
-    for(int A = 0 ; A<Platform_NUM;++A){
-        if(_main.pltfm_bool.at(A) == 2)
+void MainWindow::platform_is_moving()
+{
+    for (int A = 0; A < Platform_NUM; ++A)
+    {
+        if (_main.pltfm_bool.at(A) == 2)
             ver(A);
-        else if(_main.pltfm_bool.at(A) == 3)
+        else if (_main.pltfm_bool.at(A) == 3)
             hor(A);
     }
 }
-
-void MainWindow::ver(int A){
+void MainWindow::ver(int A)
+{
 
     ++vec_v.at(A);
-    vec_v.at(A) = vec_v.at(A) % 600;//0-599
-    int k = vec_v.at(A)/300;
-    if(k == 1)//300-599
-        _main.pltfm_QItem.at(A)->setY(_main.pltfm_QItem.at(A)->y()-1);
-    if(k == 0)//0-299
-        _main.pltfm_QItem.at(A)->setY(_main.pltfm_QItem.at(A)->y()+1);
+    vec_v.at(A) = vec_v.at(A) % 600; //0-599
+    int k = vec_v.at(A) / 300;
+    if (k == 1) //300-599
+        _main.pltfm_QItem.at(A)->setY(_main.pltfm_QItem.at(A)->y() - 1);
+    if (k == 0) //0-299
+        _main.pltfm_QItem.at(A)->setY(_main.pltfm_QItem.at(A)->y() + 1);
 }
-void MainWindow::hor(int A){
+void MainWindow::hor(int A)
+{
     ++vec_v.at(A);
-    vec_v.at(A) = vec_v.at(A) % 600;//0-599
-    int k = vec_v.at(A)/300;
-    if(k == 1)//300-599
-        _main.pltfm_QItem.at(A)->setX(_main.pltfm_QItem.at(A)->x()-1);
-    if(k == 0)//0-299
-        _main.pltfm_QItem.at(A)->setX(_main.pltfm_QItem.at(A)->x()+1);
+    vec_v.at(A) = vec_v.at(A) % 600; //0-599
+    int k = vec_v.at(A) / 300;
+    if (k == 1) //300-599
+        _main.pltfm_QItem.at(A)->setX(_main.pltfm_QItem.at(A)->x() - 1);
+    if (k == 0) //0-299
+        _main.pltfm_QItem.at(A)->setX(_main.pltfm_QItem.at(A)->x() + 1);
 }
-void MainWindow::stop_timer(){
+void MainWindow::stop_timer(int A)
+{
+    PlatformTime = A;
+    PlatformTime = 50;
     timer->stop();
-    emit start_moving_pla();
+    start_moving_pla_timer->start(10);
 }
-void MainWindow::restart_timer(){
+void MainWindow::restart_timer()
+{
+    PlatformTime = 50;
     timer->start(10);
     _timer->start(10);
+    start_moving_pla_timer->stop();
+}
+
+void MainWindow::move_the_platform()
+{
+    cout << "in MainWindow move_the_platform" << endl;
+    --PlatformTime;
+    if (PlatformTime == 0)
+        emit stop_this();
+    float now = DOODLE_VEL + 0.5 * DOODLE_ACC - DOODLE_ACC * (50 - PlatformTime);
+    for (int mmmm = 0; mmmm < Platform_NUM; ++mmmm)
+        mainbullet::pltfm_QItem.at(mmmm)->setY(mainbullet::pltfm_QItem.at(mmmm)->y() + now);
 }

@@ -1,14 +1,14 @@
 #include "bullet.h"
 
-bullet::bullet(QGraphicsScene *mainwin, const int i, const double X, const double Y, const int count) : blt(new QGraphicsPixmapItem),
-                                                                                                        X_axis(X + Doodle_SIZE / 2 - 20),
-                                                                                                        Y_axis(Y),
-                                                                                                        type(i),
-                                                                                                        bullet_pix_type_1(new QPixmap(":/rec/photo/bullet/brown.png")),
-                                                                                                        bullet_pix_type_2(new QPixmap(":/rec/photo/bullet/blue.png")),
-                                                                                                        blt_time(new QTimer),
-                                                                                                        here(mainwin),
-                                                                                                        which_bul(count)
+bullet::bullet(QGraphicsScene *mainwin, const int i, const float X, const float Y, const int count) : blt(new QGraphicsPixmapItem),
+                                                                                                      X_axis(X + Doodle_SIZE / 2 - 20),
+                                                                                                      Y_axis(Y),
+                                                                                                      type(i),
+                                                                                                      bullet_pix_type_1(new QPixmap(":/rec/photo/bullet/brown.png")),
+                                                                                                      bullet_pix_type_2(new QPixmap(":/rec/photo/bullet/blue.png")),
+                                                                                                      blt_time(new QTimer),
+                                                                                                      here(mainwin),
+                                                                                                      which_bul(count)
 {
     blt->setPos(X_axis, Y_axis);
     if (type == 1)

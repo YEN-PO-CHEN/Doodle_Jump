@@ -4,11 +4,12 @@
 #include <QObject>
 #include <QWidget>
 #include "monster.h"
-class monster1:public monster
+class monster1 : public monster
 {
     Q_OBJECT
 public:
-    monster1(QGraphicsScene*);
+    monster1(QGraphicsScene *);
+
 protected:
     QPixmap mn1;
 };

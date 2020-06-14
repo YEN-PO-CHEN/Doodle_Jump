@@ -9,6 +9,7 @@ doodle::doodle(QGraphicsScene *mainwin, int i) : ps_R(0),
                                                  place_Y(Default_Y),
                                                  player(new QGraphicsPixmapItem),
                                                  hor_int(new QTimer),
+                                                 plt_mv_timer(new QTimer),
                                                  doodle_pix_type_1{QPixmap(":/rec/photo/player/scene1/L.png"),
                                                                    QPixmap(":/rec/photo/player/scene1/R.png"),
                                                                    QPixmap(":/rec/photo/player/scene1/S.png")},
@@ -26,17 +27,15 @@ doodle::doodle(QGraphicsScene *mainwin, int i) : ps_R(0),
     doodle_pix_type_2[2] = doodle_pix_type_2[2].scaled(Doodle_SIZE - 20, Doodle_SIZE + 20);
     player->setPixmap(doodle_pix_type_1[0]);
     mainwin->addItem(player);
+    connect(plt_mv_timer, SLOT(timeout()), this, SIGNAL(move_platform_slot()));
 }
 //Y
+/**************************************************************************************
+      ********************************Old
 bool doodle::judge() //collide
 {
     bool test = false;
-
-    if (up_down)
-    {
-
-        return false;
-    } //no collide
+    if (up_down) { return false; } //no collide
     //down
     for (int tt = 0; tt < Platform_NUM; ++tt)
     {
@@ -53,90 +52,81 @@ bool doodle::judge() //collide
             here = 1;
             Y_to_stay =_main.pltfm_QItem.at(tt)->y();
             now_co = tt;
-
             if(_main.pltfm_bool.at(tt) == 1){
                 _main.pltfm_QItem.at(tt)->setPixmap(QPixmap(":/rec/photo/platform/brown/platform_brown_broken.png"));
                 _main.pltfm_QItem.at(tt)->setY( _main.pltfm_QItem.at(tt)->y() + Platform_Y_SIZE);
-                _main.pltfm_QItem.at(tt)->setZValue(1);
-            }
+                _main.pltfm_QItem.at(tt)->setZValue(1); }
             break;  
-        }
-        //is collide
-
+        } //is collide
     }
     return test;
 }
+***************************************************************************************************************************/
+/*****************************************************************************************************************************Old
 void doodle::to_jump() //Y
 { 
     if (judge())
         change();
     r_doodle_jump();
 }
+*****************************************************************************************************************************/
+/*****************************************************************************************************************************Old
 void doodle::change() //Y
 {
     up_down = true;
-    emit platform_move(Y_to_stay, jump, now_co);
-    jump = 101 - jump;
+    jump = 0;
 }
-
+*****************************************************************************************************************************/
+/*****************************************************************************************************************************Old
 bool doodle::check_place() //Y check
 {
-    if (player->y() >= DOODLE_HIGH)
-    {// > 600
-        jump = 1; //1-50
-        up_down = true;
-    }
-    if (player->y() <= DOODLE_LOW) // < 200
-    {
-        jump = 51;       //51-100
-        up_down = false; //need to down
-    }
-    if (!up_down)
-        lowlow(); //need to down
+    if(jump<=50)
+        upup();
     else
-        upup(); //need to jump
-    return 0;
+        lowlow();
 }
-void doodle::r_doodle_jump() //revise Y jump
-{
+*****************************************************************************************************************************/
+/*****************************************************************************************************************************Old
+void doodle::r_doodle_jump() { //revise Y jump
     jump++; //1-100
     check_place();
     player->setPos(doodle_pos_X, doodle_pos_Y);
     return;
 }
-void doodle::upup() //Y up
-{
-    int t = (jump % (Doodle_Jump_time_int / 2)); //1-50
-    t = 50 - t;
-    doodle_pos_Y -= (DOODLE_ACC / 2) * (2 * t + 1);
-    up_down = true;
+*****************************************************************************************************************************/
+/*****************************************************************************************************************************Old
+void doodle::upup() { //Y up
+    int t = 50 - jump;
+    int now = doodle_pos_Y - (DOODLE_ACC / 2 )*(2*t + 1);
 
-    if (jump == 50)
-    {   
-
-        if(here != 0){
-
-            emit to_stop_jump();
-        }
-        doodle_pos_Y = DOODLE_LOW;
-        up_down = false;
+    //當y<200時
+    if( now < DOODLE_LOW ){
+        jump = 0;
+        for(int iu = 0;iu<Platform_NUM;++iu)
+            mainbullet::pltfm_QItem.at(iu)->setY(now);
     }
-    player->setPos(doodle_pos_X, doodle_pos_Y);
+    else
+        doodle_pos_Y = now;
+    up_down = true;
+    if(jump == 50){
+
+    }
+
 }
+*****************************************************************************************************************************/
+/*****************************************************************************************************************************Old
 void doodle::lowlow() //Y down
 {
-    //51-100
-    int k = jump - 50;
-    doodle_pos_Y += (DOODLE_ACC / 2) * (2 * (k - 1) + 1);
-    up_down = false;
-    if (jump == 100)
-    {
-        doodle_pos_Y = DOODLE_HIGH;
-        jump = 0;
-        up_down = true;
+    int t = jump - 50;
+    int now = doodle_pos_Y + (DOODLE_ACC / 2 )*(2*t + 1);
+    up_down = false; //down
+    if(now > Scene_Y){
+        //遊戲結束畫面
+
     }
-    player->setPos(doodle_pos_X, doodle_pos_Y);
-}
+    else
+        doodle_pos_Y = now;
+}*****************************************************************************************************************************/
 //X
 void doodle::move_R() //X
 {
@@ -158,7 +148,6 @@ void doodle::move_L() //X
     doodle_test();
     player->setX(doodle_pos_X);
 }
-
 void doodle::horizon_intercial(bool direction) //X
 {
     if (direction)
@@ -221,4 +210,80 @@ void doodle::timer_restart()
 {
     jump = 51;
     here = false;
+}
+void doodle::jump_j()
+{
+    bool up_is_true = true;
+    jump %= 100;
+    int t = jump + 1;
+    float dy = 0;
+    dy = DOODLE_VEL + 0.5 * DOODLE_ACC - DOODLE_ACC * t;
+    if (dy < 0)
+        up_is_true = true;
+    else
+        up_is_true = false;
+
+    if (!up_is_true)
+        if (!collide_is_true)
+            collide_is_true = collide_or_not();
+
+    if (collide_is_true)
+        dy *= -1;
+    float now = player->y() - dy;
+    if (now < DOODLE_LOW)
+        emit main_window_signal(jump);
+    else
+        player->setY(now);
+    ++jump;
+}
+bool doodle::collide_or_not()
+{
+    bool test = false;
+    if (up_down)
+    {
+        return false;
+    } //no collide
+    //down
+    for (int tt = 0; tt < Platform_NUM; ++tt)
+    {
+        test = player->collidesWithItem(_main.pltfm_QItem.at(tt), Qt::IntersectsItemBoundingRect);
+        if (!test)
+            continue;
+        int YY = (_main.pltfm_QItem.at(tt)->y() - player->y());
+        int XX = (player->x() - _main.pltfm_QItem.at(tt)->x());
+        //0.5是可動參數
+        if (YY < 0.5 * (Doodle_SIZE))
+            test = false;
+        if (XX > (Platform_X_SIZE) || XX < (-0.8) * (Doodle_SIZE))
+            test = false;
+        if (test)
+        {
+            nonzero = 1;
+            if (_main.pltfm_bool.at(tt) == 1)
+            {
+                _main.pltfm_QItem.at(tt)->setPixmap(QPixmap(":/rec/photo/platform/brown/platform_brown_broken.png"));
+                _main.pltfm_QItem.at(tt)->setY(_main.pltfm_QItem.at(tt)->y() + Platform_Y_SIZE);
+                _main.pltfm_QItem.at(tt)->setZValue(10);
+            }
+            break;
+        } //is collide
+    }
+    return test;
+}
+void doodle::move_platform_slot()
+{
+    ++runtime;
+    if (jump == 50)
+    {
+        cout << "RunTime =" << runtime << endl;
+        plt_mv_timer->stop();
+        emit mainwindow_start_time();
+        return;
+    }
+    int tt = jump;
+    int judge = 1;
+    int now = judge * DOODLE_ACC * (2 * tt + 1);
+    for (int mmmm = 0; mmmm < Platform_NUM; ++mmmm)
+        mainbullet::pltfm_QItem.at(mmmm)->setY(mainbullet::pltfm_QItem.at(mmmm)->y() + now);
+    jump++;
 }
