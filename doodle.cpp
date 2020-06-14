@@ -31,6 +31,7 @@ doodle::doodle(QGraphicsScene *mainwin, int i) : ps_R(0),
 bool doodle::judge() //collide
 {
     bool test = false;
+
     if (up_down)
     {
 
@@ -39,29 +40,36 @@ bool doodle::judge() //collide
     //down
     for (int tt = 0; tt < Platform_NUM; ++tt)
     {
-        test = player->collidesWithItem(_main.pltfm_QItem.at(tt));
-        if (!test)
-            continue;
+        test = player->collidesWithItem(_main.pltfm_QItem.at(tt),Qt::IntersectsItemBoundingRect);
+        if (!test) continue;
         int YY = (_main.pltfm_QItem.at(tt)->y() - player->y());
         int XX = (player->x() - _main.pltfm_QItem.at(tt)->x());
-        if (YY < 0.5 * (Doodle_SIZE))
+        if (YY < 0.84 * (Doodle_SIZE))
             test = false;
         if (XX > (Platform_X_SIZE) || XX < (-0.8) * (Doodle_SIZE))
             test = false;
         if (test)
         {
-            Y_to_stay = Default_Y - _main.pltfm_QItem.at(tt)->y();
+            here = 1;
+            Y_to_stay =_main.pltfm_QItem.at(tt)->y();
             now_co = tt;
-            break;
+
+            if(_main.pltfm_bool.at(tt) == 1){
+                _main.pltfm_QItem.at(tt)->setPixmap(QPixmap(":/rec/photo/platform/brown/platform_brown_broken.png"));
+                _main.pltfm_QItem.at(tt)->setY( _main.pltfm_QItem.at(tt)->y() + Platform_Y_SIZE);
+                _main.pltfm_QItem.at(tt)->setZValue(1);
+            }
+            break;  
         }
+        //is collide
+
     }
     return test;
 }
 void doodle::to_jump() //Y
-{
+{ 
     if (judge())
         change();
-
     r_doodle_jump();
 }
 void doodle::change() //Y
@@ -74,7 +82,7 @@ void doodle::change() //Y
 bool doodle::check_place() //Y check
 {
     if (player->y() >= DOODLE_HIGH)
-    {             // > 600
+    {// > 600
         jump = 1; //1-50
         up_down = true;
     }
@@ -102,8 +110,14 @@ void doodle::upup() //Y up
     t = 50 - t;
     doodle_pos_Y -= (DOODLE_ACC / 2) * (2 * t + 1);
     up_down = true;
+
     if (jump == 50)
-    {
+    {   
+
+        if(here != 0){
+
+            emit to_stop_jump();
+        }
         doodle_pos_Y = DOODLE_LOW;
         up_down = false;
     }
@@ -203,3 +217,8 @@ void doodle::shot()
     QTimer::singleShot(150, this, SLOT(aftershot()));
 }
 void doodle::aftershot() { player->setPixmap(doodle_pix_type_1[1]); }
+void doodle::timer_restart()
+{
+    jump = 51;
+    here = false;
+}

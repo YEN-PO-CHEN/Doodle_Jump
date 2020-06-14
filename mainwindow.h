@@ -38,6 +38,7 @@ private:
     QGraphicsTextItem *text;
     QGraphicsItemGroup *group;
     QTimer *timer;
+    QTimer *_timer;
     doodle *dood;
     vector<bullet *> bul;
     background *bcgd;
@@ -47,8 +48,11 @@ signals:
     void move_L_signal();
     void move_R_signal();
     void shoot_W_signal();
+    void start_moving_pla();//signal
 public slots:
     void platform_is_moving();
+    void stop_timer();
+    void restart_timer();
 
 public:
     platform__build *_platform;

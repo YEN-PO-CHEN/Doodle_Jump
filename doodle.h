@@ -29,16 +29,17 @@ public:
     int t;
     int d = 0;
     int now_co;
+    int here = 0;
 signals:
     void platform_move(int, int,int);
+    void to_stop_jump();
 public slots:
     void to_jump();
     void move_L();
     void move_R();
     void ho_in();
     void aftershot();
-
-
+    void timer_restart();
 protected:
     int type = 0;
     int time;

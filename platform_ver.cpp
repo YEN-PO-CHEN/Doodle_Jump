@@ -25,7 +25,6 @@ void platform_ver::put_into_the_scene()
 }
 void platform_ver::move(){
     ++type;
-    cout<<type<<" ";
     type = type % 600;//0-599
     int k = type/300;
     if(k == 1)//300-599

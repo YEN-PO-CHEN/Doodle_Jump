@@ -30,6 +30,11 @@ SOURCES += \
         doodle.cpp \
         main.cpp \
         mainwindow.cpp \
+        monster.cpp \
+        monster1.cpp \
+        monster2.cpp \
+        monster3.cpp \
+        monster4.cpp \
         platform.cpp \
         platform__build.cpp \
         platform__recreate.cpp \
@@ -45,6 +50,11 @@ HEADERS += \
         doodle.h \
         mainbullet.h \
         mainwindow.h \
+        monster.h \
+        monster1.h \
+        monster2.h \
+        monster3.h \
+        monster4.h \
         platform.h \
         platform__build.h \
         platform__recreate.h \
@@ -63,3 +73,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     res.qrc
+
+DISTFILES +=

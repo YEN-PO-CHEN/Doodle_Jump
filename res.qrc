@@ -13,10 +13,20 @@
         <file>rec/photo/platform/white/p-white-s0.png</file>
         <file>rec/photo/platform/white/p-white-s1.png</file>
         <file>rec/photo/platform/white/p-white.png</file>
+        <file>rec/photo/background/scene1.jpg</file>
+        <file>rec/photo/bonus/rocket/raketa_2left.png</file>
+        <file>rec/photo/bonus/rocket/raketa_3right.png</file>
+        <file>rec/photo/bonus/rocket/raketa_on_panel.png</file>
+        <file>rec/photo/bonus/string/pruz1.png</file>
+        <file>rec/photo/bonus/string/pruz2.png</file>
+        <file>rec/photo/monsters/durka.png</file>
+        <file>rec/photo/monsters/monster_1.png</file>
+        <file>rec/photo/monsters/monster_2.png</file>
+        <file>rec/photo/monsters/monster_3left.png</file>
+        <file>rec/photo/monsters/monster_3right.png</file>
         <file>rec/photo/player/scene1/L.png</file>
         <file>rec/photo/player/scene1/R.png</file>
         <file>rec/photo/player/scene1/S.png</file>
         <file>rec/photo/topbar/topbar.png</file>
-        <file>rec/photo/background/scene1.jpg</file>
     </qresource>
 </RCC>

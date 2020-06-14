@@ -29,13 +29,17 @@ public:
 public slots:
     void move_the_platform(int, int,int);
     void plat_move();
+    void start_move();
 signals:
     void resetitem(int);
+    void restart();
 protected:
     int length;
     int time_t;
+    int time_s;
     double vel;
     int now_item;
+    double a;
 };
 
 #endif // PLATFORM__RECREATE_H
