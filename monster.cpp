@@ -23,3 +23,5 @@ void monster::mon_delete()
 void monster::set_x_y()
 {
 }
+
+void monster::jump(double I){ mon->setY(mon->y()+ I); }

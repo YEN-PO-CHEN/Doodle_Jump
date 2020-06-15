@@ -14,9 +14,11 @@ public:
     void put_into_the_scene();
     void set_x_y();
     virtual void add_pix() = 0;
-    virtual ~platform();
+    virtual void to_move(int) {}
     virtual void change() {} //only broken
     virtual void reback() {} //only break
+    virtual ~platform();
+    void jump(double);
     QGraphicsPixmapItem *plat;
 
 protected:

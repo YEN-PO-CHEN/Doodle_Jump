@@ -12,6 +12,7 @@ class platform_hor : public platform
 public:
     platform_hor(QGraphicsScene *, int, int, int);
     void add_pix() override;
+    void to_move(int) override;
 };
 
 #endif // PLATFORM_BLUE_H

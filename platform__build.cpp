@@ -2,6 +2,7 @@
 
 platform__build::platform__build(QGraphicsScene *I) : plt_Scene(I)
 {
+    v_platform.resize(Platform_NUM);
     reset_pltform();
     for (int mm = 0; mm < Platform_NUM; ++mm)
     {
@@ -10,30 +11,26 @@ platform__build::platform__build(QGraphicsScene *I) : plt_Scene(I)
         {
         case 1:
         {
-            platform_broken p_a(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
             mainbullet::pltfm_bool.at(mm) = 1;
-            v_platform.at(mm) = &p_a;
+            v_platform.at(mm) = new platform_broken(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
             break;
         }
         case 2:
         {
-            platform_ver p_b(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
             mainbullet::pltfm_bool.at(mm) = 2;
-            v_platform.at(mm) = &p_b;
+            v_platform.at(mm) = new platform_ver(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
             break;
         }
         case 3:
         {
-            platform_hor p_c(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
             mainbullet::pltfm_bool.at(mm) = 3;
-            v_platform.at(mm) = &p_c;
+            v_platform.at(mm) = new platform_hor(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
             break;
         }
         case 0:
         {
-            platform_normal p_d(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
             mainbullet::pltfm_bool.at(mm) = 0;
-            v_platform.at(mm) = &p_d;
+            v_platform.at(mm) = new platform_normal(plt_Scene, place.at(mm).at(1), place.at(mm).at(2), mm);
             break;
         }
         }

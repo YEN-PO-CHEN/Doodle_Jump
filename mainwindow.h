@@ -29,8 +29,10 @@ public:
     void hor(int);
     void keyPressEvent(QKeyEvent *e);
     void ctor_vector();
+    bool collide(int);
     int PlatformTime = 50; //Stop_timer
     int jump_time = 0;     //Y_jump()
+    double velocity = DOODLE_VEL;
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;

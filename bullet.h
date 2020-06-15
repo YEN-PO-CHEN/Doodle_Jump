@@ -15,11 +15,12 @@ public:
 protected:
     float X_axis, Y_axis;
     int type;
+    int which_bul;
     QPixmap *bullet_pix_type_1;
     QPixmap *bullet_pix_type_2;
     QTimer *blt_time;
     QGraphicsScene *here;
-    int which_bul;
+
 
 public slots:
     void fly();

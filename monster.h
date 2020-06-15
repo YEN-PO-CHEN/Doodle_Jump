@@ -13,6 +13,7 @@ public:
     void mon_delete();
     bool be_shoot = false;
     void set_x_y();
+    void jump(double);
 
 protected:
     int i;

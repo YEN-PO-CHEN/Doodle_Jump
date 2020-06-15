@@ -11,6 +11,7 @@ class platform_ver : public platform
 public:
     platform_ver(QGraphicsScene *, int, int, int);
     void add_pix() override;
+    void to_move(int) override;
 };
 
 #endif // PLATFORM_VER_H

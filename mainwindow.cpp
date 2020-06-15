@@ -23,10 +23,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     connect(this, SIGNAL(move_R_signal()), dood, SLOT(move_R())); //R
     connect(this, SIGNAL(shot_W_signal()), this, SLOT(shooot())); //W
     //plat; auto-move; timer;
-    timer->start(10);
+    timer->start(15);
     connect(timer, SIGNAL(timeout()), this, SLOT(platform_is_moving()));
     //Y-axis; auto-move; timer;
-    //connect(timer,SIGNAL(timeout()),this,SLOT(Y_jump()));
+    connect(timer,SIGNAL(timeout()),this,SLOT(Y_jump()));
 }
 //Bullet ; keypressevent_W ; bullet.cpp
 void MainWindow::shooot() //SLOT
@@ -42,28 +42,7 @@ void MainWindow::shooot() //SLOT
     _main.bullet_of_number.at(count) = false;
     bul.at(count) = new bullet(scene, 1, dood->player->x(), dood->player->y(), count);
 }
-//doodle auto-jump
-void MainWindow::Y_jump() //SLOT
-{
-    bool now;
-    cout << "here";
-    if (jump_time < 50)
-        now = false;
-    else
-        now = true;
-    if (jump_time <= 50)
-        dood->jump_j(jump_time);
-    if (jump_time > 50)
-        dood->down_j(jump_time);
-    if (dood->collide_or_not(now))
-    {
-        for (int m = 0; m < Platform_NUM; ++m)
-            platform__build::v_platform.at(m)->change();
-        jump_time = 0;
-    }
-    if (dood->player->y() < DOODLE_LOW)
-        view->centerOn(Scene_X / 2, dood->player->y());
-}
+
 // plan auto-move
 void MainWindow::platform_is_moving() //SLOT
 {
@@ -80,20 +59,14 @@ void MainWindow::ver(int A)
     ++Plt_vec_v.at(A);
     Plt_vec_v.at(A) = Plt_vec_v.at(A) % 600; //0-599
     int k = Plt_vec_v.at(A) / 300;
-    if (k == 1) //300-599
-        platform__build::v_platform.at(A)->setY(platform__build::v_platform.at(A)->y() - 1);
-    if (k == 0) //0-299
-        platform__build::v_platform.at(A)->setY(platform__build::v_platform.at(A)->y() + 1);
+    _platform->v_platform.at(A)->to_move(k);
 }
 void MainWindow::hor(int A)
 {
     ++Plt_vec_v.at(A);
     Plt_vec_v.at(A) = Plt_vec_v.at(A) % 600; //0-599
     int k = Plt_vec_v.at(A) / 300;
-    if (k == 1) //300-599
-        platform__build::v_platform.at(A)->setX(platform__build::v_platform.at(A)->x() - 1);
-    if (k == 0) //0-299
-        platform__build::v_platform.at(A)->setX(platform__build::v_platform.at(A)->x() + 1);
+    _platform->v_platform.at(A)->to_move(k);
 }
 //Classic
 void MainWindow::keyPressEvent(QKeyEvent *e)
@@ -123,6 +96,56 @@ void MainWindow::ctor_vector()
     bul.resize(Bullet_NUM);
     _main.bullet_of_number.resize(Bullet_NUM, true);
     _main.pltfm_bool.resize(Platform_NUM, 0);
-    platform__build::v_platform.resize(Platform_NUM);
+
 }
 MainWindow::~MainWindow() { delete ui; }
+//doodle auto-jump
+void MainWindow::Y_jump() //SLOT
+{
+    if(dood->player->y() > (DOODLE_HIGH+DOODLE_LOW)/2||velocity>=0){
+        dood->jump(velocity);
+    }
+    else{
+        for(int now = 0;now<Platform_NUM;++now)
+            _platform->v_platform.at(now)->jump(-velocity);
+        //mon
+        //str
+    }
+
+    if (collide(velocity))
+        velocity = DOODLE_VEL;
+    _platform_re->plt_count();
+    velocity +=DOODLE_ACC;
+}
+bool MainWindow::collide(int now) //SLOT
+{
+    bool test = false;
+    if (now<=0)
+        return test;
+    //down
+    for (int tt = 0; tt < Platform_NUM; ++tt)
+    {
+        test = dood->player->collidesWithItem(platform__build::v_platform.at(tt)->plat, Qt::IntersectsItemBoundingRect);
+        //qDebug() << "???";
+        if (!test)
+            continue;
+        if (mainbullet::pltfm_bool.at(tt) == 1)
+        {
+            _platform->v_platform.at(tt)->change();
+            _platform->v_platform.at(tt)->plat->setY(_platform->v_platform.at(tt)->plat->y() + Platform_Y_SIZE);
+            _platform->v_platform.at(tt)->plat->setZValue(100);
+
+            return false;
+        }
+        int YY = (_platform->v_platform.at(tt)->plat->y() - dood->player->y());
+        int XX = (dood->player->x() - _platform->v_platform.at(tt)->plat->x());
+        //0.5是可動參數
+        if (YY < 0.6 * (Doodle_SIZE))
+            test = false;
+        if (XX > (Platform_X_SIZE) || XX < (-0.6) * (Doodle_SIZE))
+            test = false;
+
+        break;//is collide
+    }
+    return test;
+}

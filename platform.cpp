@@ -2,6 +2,8 @@
 
 platform::platform(QGraphicsScene *I, int X, int Y, int mm) : _scene(I), X_plt(X), Y_plt(Y), plt_now_number(mm) {}
 platform::~platform() {}
+
+void platform::jump(double I){ plat->setY(plat->y()+ I); }
 void platform::set_x_y()
 {
     plat = new QGraphicsPixmapItem;

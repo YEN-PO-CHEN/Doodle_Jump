@@ -5,11 +5,11 @@ bullet::bullet(QGraphicsScene *mainwin, const int i, const float X, const float 
     X_axis(X + Doodle_SIZE / 2 - 20),
     Y_axis(Y),
     type(i),
+    which_bul(count),
     bullet_pix_type_1(new QPixmap(":/rec/photo/bullet/brown.png")),
     bullet_pix_type_2(new QPixmap(":/rec/photo/bullet/blue.png")),
     blt_time(new QTimer),
-    here(mainwin),
-    which_bul(count)
+    here(mainwin)
 {
     blt->setPos(X_axis, Y_axis);
     if (type == 1)

@@ -2,7 +2,7 @@
 #define _BASIC_H
 
 //headerfile
-
+#include <QDebug>
 #include <QGraphicsScene>
 
 #include <QGraphicsPixmapItem>
@@ -28,7 +28,7 @@ using namespace std;
  * DOODLE
 ******************/
 #define Doodle_SIZE 80
-ㄑ
+
 //doodle jump time
 
 //double
@@ -48,7 +48,7 @@ using namespace std;
 #define DOODLE_HIGH 600
 #define DOODLE_LOW 200
 #define DOODLE_ACC 0.32
-#define DOODLE_VEL 16
+#define DOODLE_VEL -16
 
 /******************
  * BULLET

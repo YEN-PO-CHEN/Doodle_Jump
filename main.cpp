@@ -4,8 +4,6 @@
 #include <QApplication>
 #include "_basic.h"
 #include "platform.h"
-bool doodle::up_down = true;
-int doodle::jump = 0;
 vector<bool> mainbullet::bullet_of_number{true, true, true, true, true};
 vector<int> mainbullet::pltfm_bool{};
 vector<platform *> platform__build::v_platform{};
