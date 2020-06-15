@@ -9,23 +9,21 @@ class platform : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    platform(QGraphicsScene *, int, int);
-    virtual void put_into_the_scene() = 0;
-    virtual void select_which_place();
-    virtual void add_pix() {}
+    platform();
+    platform(QGraphicsScene *, int, int, int);
+    void put_into_the_scene();
+    void set_x_y();
+    virtual void add_pix() = 0;
     virtual ~platform();
-    virtual void set_x_y() = 0;
+    virtual void change() {} //only broken
+    virtual void reback() {} //only break
+    QGraphicsPixmapItem *plat;
 
 protected:
     QGraphicsScene *_scene;
-    int num_platform = Platform_NUM;
-    mainbullet _pltfm;
+    QPixmap pix_platform;
     int X_plt, Y_plt;
-    int which_is_this;
-    QTimer *_time_;
-
-public slots:
-    virtual void move() = 0;
+    int plt_now_number;
 };
 
 #endif // PLATFORM_H

@@ -11,8 +11,6 @@ class bullet : public QObject, public QGraphicsPixmapItem
 public:
     bullet(QGraphicsScene *mainwin, const int i, float X, float Y, int count);
     QGraphicsPixmapItem *blt;
-    void con();
-    mainbullet main_bul;
 
 protected:
     float X_axis, Y_axis;
@@ -25,8 +23,10 @@ protected:
 
 public slots:
     void fly();
+    void remove();
 signals:
     void bomb(int);
+    void rem_bul();
 };
 
 #endif // BULLET_H

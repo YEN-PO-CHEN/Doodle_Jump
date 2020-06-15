@@ -12,9 +12,11 @@ public:
 
 protected:
     QGraphicsPixmapItem *back;
+    QGraphicsPixmapItem *under;
     int type;
     QPixmap *back_type_1;
     QPixmap *back_type_2;
+    QPixmap *down;
 };
 
 #endif // BACKGROUND_H

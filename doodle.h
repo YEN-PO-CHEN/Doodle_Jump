@@ -9,14 +9,12 @@ class doodle : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    doodle(QGraphicsScene *mainwin, int i);
+    doodle(QGraphicsScene *mainwin, int i); //
     void horizon_intercial(bool direction);
     void doodle_test(); //x軸
 
-    int ps_R;
-    int ps_L;
-    float doodle_pos_X;
-    float doodle_pos_Y;
+    QTimer *hor_int;      //
+    QTimer *plt_mv_timer; //
     void shot();
     static bool up_down;
     mainbullet _main;
@@ -26,11 +24,16 @@ public:
     int now_co;
     int here = 0;
     static int jump;
+    int ps_R; //
+    int ps_L; //
+private:
+    int type = 0;                  //
+    int L_R;                       //
+    QPixmap doodle_pix_type[2][3]; //54
 signals:
     void platform_move(int, int, int);
-    //void to_stop_jump();
+
 public slots:
-    //void to_jump();
 
     //X - axis
     void move_L();
@@ -40,31 +43,32 @@ public slots:
     void aftershot();
     //Y - axis
     void timer_restart();
-    bool collide_or_not();
-    void jump_j();
+    int collide_or_not(bool);
+    void jump_j(int);
+    void down_j(int);
 
 protected:
-    int type = 0;
     int time;
-    int L_R;
+
     float t_t;
-    float place_Y;
 
     float position;
     int push_time_R = 0;
     int push_time_L = 0;
-    QGraphicsPixmapItem *player;
-    QTimer *hor_int;
+
     QTimer *bullet_timer;
-    QTimer *plt_mv_timer;
+
     QPixmap doodle_pix_type_1[3];
     QPixmap doodle_pix_type_2[3];
     QPixmap *bullet_type_1;
     QPixmap *bullet_type_2;
     bool up_or_down = true; //true is up
-    bool collide_is_true = false;
+    int now_when_i_jump = 0;
 
 public:
+    QGraphicsPixmapItem *player;
+    bool up_is_true = false;
+    bool collide_is_true = false;
     int runtime; //in platform move
     int jump_way = 0;
     bool plt_mov = false;
@@ -73,9 +77,12 @@ public:
     int do_time = 0;
     int k = 0;
     float count_vel = 0;
+    void plt_count();
+    void plt_recreate(int I);
+    float velocity = DOODLE_VEL;
 signals:
     void to_stop_end_signal();
-    void main_window_signal(int);
+    void main_window_signal(float);
     void mainwindow_start_time();
 public slots:
     void move_platform_slot();

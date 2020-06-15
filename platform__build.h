@@ -16,14 +16,11 @@ class platform__build : public QObject, public QGraphicsPixmapItem
 public:
     platform__build(QGraphicsScene *);
     mainbullet _main;
-    vector<platform *> v_platform;
+    static vector<platform *> v_platform;
     void reset_pltform();
 
 private:
     QGraphicsScene *plt_Scene;
-    vector<vector<int>> place;
+    vector<vector<int>> place; //ok
 };
 #endif // PLATFORM__BUILD_H
-/*
- *
-*/

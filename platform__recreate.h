@@ -10,36 +10,15 @@
 #include "platform_broken.h"
 #include "platform_hor.h"
 #include "platform_ver.h"
-
+#include "platform__build.h"
 class platform__recreate : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
     platform__recreate(QGraphicsScene *);
-
     QGraphicsScene *_scene;
-    QTimer *timer;
-    mainbullet *_main;
-    vector<platform *> v_platform;
-
     void plt_recreate(int);
     void plt_count();
-
-public slots:
-    void move_the_platform(int, int, int);
-    void plat_move();
-    void start_move();
-signals:
-    void resetitem(int);
-    void restart();
-
-protected:
-    int length;
-    int time_t;
-    int time_s;
-    float vel;
-    int now_item;
-    float a;
 };
 
 #endif // PLATFORM__RECREATE_H

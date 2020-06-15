@@ -12,14 +12,11 @@ class platform_broken : public platform
 public:
     platform_broken(QGraphicsScene *, int, int, int);
     void add_pix() override;
-    void put_into_the_scene() override;
-    void set_x_y() override;
-public slots:
-    void move() override{};
+    void change() override;
+    void reback() override;
 
 protected:
-    QPixmap pix_platform[2];
-    int plt_now_number;
+    QPixmap pix_platform_sp;
 };
 
 #endif // PLATFORM_BROKEN_H

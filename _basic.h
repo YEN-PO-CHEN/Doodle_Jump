@@ -28,7 +28,7 @@ using namespace std;
  * DOODLE
 ******************/
 #define Doodle_SIZE 80
-
+ㄑ
 //doodle jump time
 
 //double

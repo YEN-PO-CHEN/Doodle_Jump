@@ -12,14 +12,6 @@ class platform_hor : public platform
 public:
     platform_hor(QGraphicsScene *, int, int, int);
     void add_pix() override;
-    void put_into_the_scene() override;
-    void set_x_y() override;
-public slots:
-    void move() override{};
-
-protected:
-    QPixmap pix_platform;
-    int plt_now_number;
 };
 
 #endif // PLATFORM_BLUE_H

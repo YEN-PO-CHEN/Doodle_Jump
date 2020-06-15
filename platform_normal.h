@@ -11,15 +11,7 @@ class platform_normal : public platform
 public:
     platform_normal(QGraphicsScene *, int, int, int);
     platform_normal(QGraphicsScene *);
-    void put_into_the_scene() override;
     void add_pix() override;
-    void set_x_y() override;
-public slots:
-    void move() override{};
-
-protected:
-    QPixmap pix_platform;
-    int plt_now_number;
 };
 
 #endif // PLATFORM_NORMAL_H
