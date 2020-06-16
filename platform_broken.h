@@ -18,5 +18,4 @@ public:
 protected:
     QPixmap pix_platform_sp;
 };
-
 #endif // PLATFORM_BROKEN_H

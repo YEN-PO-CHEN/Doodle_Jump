@@ -21,7 +21,6 @@ protected:
     QTimer *blt_time;
     QGraphicsScene *here;
 
-
 public slots:
     void fly();
     void remove();

@@ -20,12 +20,12 @@ public:
     virtual ~platform();
     void jump(double);
     QGraphicsPixmapItem *plat;
+    int plt_now_number;
 
 protected:
     QGraphicsScene *_scene;
     QPixmap pix_platform;
     int X_plt, Y_plt;
-    int plt_now_number;
 };
 
 #endif // PLATFORM_H

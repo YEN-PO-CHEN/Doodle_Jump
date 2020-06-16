@@ -1,4 +1,4 @@
-#ifndef MONSTER2_H
+﻿#ifndef MONSTER2_H
 #define MONSTER2_H
 
 #include <QObject>
@@ -10,9 +10,13 @@ class monster2 : public monster
     Q_OBJECT
 public:
     monster2(QGraphicsScene *);
+    void pix_sel() override;
+    void sle_x_y() override;
+    void move_it() override;
+    void add_sce() override;
 
 protected:
-    QPixmap mn2;
+    int now = 0;
 };
 
 #endif // MONSTER2_H

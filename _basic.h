@@ -62,4 +62,8 @@ using namespace std;
 #define Platform_NUM 24
 #define Platform_Y_SIZE 20
 #define Platform_X_SIZE Platform_Y_SIZE * 4
+
+//Hazard
+#define Hazard_size 80
+
 #endif // _BASIC_H

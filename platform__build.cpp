@@ -63,10 +63,12 @@ void platform__build::reset_pltform()
     }
     for (int i = 1; i < Platform_NUM; ++i)
     {
-        int M = rand() % 200;
         int X = rand() % (Default_X - Platform_X_SIZE);
-        M += 50;
-        place.at(i).at(2) = place.at(i - 1).at(2) - M;
+        if (place.at(i).at(0) == 2)
+            X = rand() % (Default_X - 2 * Platform_X_SIZE);
+        int Y = rand() % 80;
+        Y += 100;
+        place.at(i).at(2) = place.at(i - 1).at(2) - Y;
         place.at(i).at(1) = X;
     }
 }

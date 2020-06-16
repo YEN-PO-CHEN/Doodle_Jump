@@ -10,11 +10,6 @@ void platform_broken::add_pix()
 void platform_broken::change()
 {
     plat->setY(plat->y() + 10);
-    plat->setZValue(100);
     plat->setPixmap(pix_platform_sp);
 }
-void platform_broken::reback()
-{
-    plat->setZValue(0);
-    plat->setPixmap(pix_platform);
-}
+void platform_broken::reback() { plat->setPixmap(pix_platform); }

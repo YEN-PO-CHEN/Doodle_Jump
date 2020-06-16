@@ -8,9 +8,10 @@ class monster3 : public monster
     Q_OBJECT
 public:
     monster3(QGraphicsScene *);
-
-protected:
-    QPixmap mn3;
+    void pix_sel() override;
+    void sle_x_y() override;
+    void move_it() override;
+    void add_sce() override;
 };
 
 #endif // MONSTER3_H

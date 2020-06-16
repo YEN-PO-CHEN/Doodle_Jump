@@ -9,14 +9,18 @@ class background : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     background(QGraphicsScene *mainwin, const int i);
+    QGraphicsPixmapItem *back;
+    QGraphicsPixmapItem *stop;
+    QGraphicsPixmapItem *menu;
+    QGraphicsPixmapItem *dead;
 
 protected:
-    QGraphicsPixmapItem *back;
-    QGraphicsPixmapItem *under;
     int type;
     QPixmap *back_type_1;
     QPixmap *back_type_2;
     QPixmap *down;
+    QPixmap *menu_pix;
+    QPixmap *dead_pix;
 };
 
 #endif // BACKGROUND_H

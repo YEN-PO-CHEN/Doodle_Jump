@@ -28,5 +28,8 @@
         <file>rec/photo/player/scene1/R.png</file>
         <file>rec/photo/player/scene1/S.png</file>
         <file>rec/photo/topbar/topbar.png</file>
+        <file>rec/photo/background/pause.png</file>
+        <file>rec/photo/background/dead_menu.jpg</file>
+        <file>rec/photo/background/main_menu_bg.png</file>
     </qresource>
 </RCC>

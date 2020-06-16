@@ -7,7 +7,8 @@ void platform_ver::add_pix()
     pix_platform = pix_platform.scaled(Platform_X_SIZE, Platform_Y_SIZE);
     set_x_y();
 }
-void platform_ver::to_move(int k){
+void platform_ver::to_move(int k)
+{
     if (k == 1) //300-599
         plat->setY(plat->y() - 1);
     if (k == 0) //0-299

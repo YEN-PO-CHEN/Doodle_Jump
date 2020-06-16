@@ -1,26 +1,23 @@
 #include "doodle.h"
 #include "mainwindow.h"
-doodle::doodle(QGraphicsScene *mainwin, int i) :
-    hor_int(new QTimer),
-    player(new QGraphicsPixmapItem),
-    ps_R(0),
-    ps_L(0),
-    doodle_pix_type{{QPixmap(":/rec/photo/player/scene1/L.png").scaled(Doodle_SIZE, Doodle_SIZE),
-                     QPixmap(":/rec/photo/player/scene1/R.png").scaled(Doodle_SIZE, Doodle_SIZE),
-                     QPixmap(":/rec/photo/player/scene1/S.png").scaled(Doodle_SIZE - 20, Doodle_SIZE + 20)}
-                   ,{QPixmap(":/rec/photo/player/scene1/L.png").scaled(Doodle_SIZE, Doodle_SIZE),
-                     QPixmap(":/rec/photo/player/scene1/R.png").scaled(Doodle_SIZE, Doodle_SIZE),
-                     QPixmap(":/rec/photo/player/scene1/S.png").scaled(Doodle_SIZE - 20, Doodle_SIZE + 20)}},
-    type(i-1),
-    L_R(0)
-
-
+doodle::doodle(QGraphicsScene *mainwin, int i) : hor_int(new QTimer),
+                                                 player(new QGraphicsPixmapItem),
+                                                 ps_R(0),
+                                                 ps_L(0),
+                                                 doodle_pix_type{{QPixmap(":/rec/photo/player/scene1/L.png").scaled(Doodle_SIZE, Doodle_SIZE),
+                                                                  QPixmap(":/rec/photo/player/scene1/R.png").scaled(Doodle_SIZE, Doodle_SIZE),
+                                                                  QPixmap(":/rec/photo/player/scene1/S.png").scaled(Doodle_SIZE - 20, Doodle_SIZE + 20)},
+                                                                 {QPixmap(":/rec/photo/player/scene1/L.png").scaled(Doodle_SIZE, Doodle_SIZE),
+                                                                  QPixmap(":/rec/photo/player/scene1/R.png").scaled(Doodle_SIZE, Doodle_SIZE),
+                                                                  QPixmap(":/rec/photo/player/scene1/S.png").scaled(Doodle_SIZE - 20, Doodle_SIZE + 20)}},
+                                                 type(i - 1),
+                                                 L_R(0)
 {
     //Default Position
     player->setPos(Default_X, Default_Y);
+    player->setZValue(100);
     player->setPixmap(doodle_pix_type[type][0]);
     mainwin->addItem(player);
-
 }
 //X
 void doodle::move_R() //SLOT
@@ -89,14 +86,14 @@ void doodle::doodle_test() //X check
     }
 }
 //shoot
-void doodle::shot()//
+void doodle::shot() //
 {
     player->setPixmap(doodle_pix_type[type][2]);
     QTimer::singleShot(150, this, SLOT(aftershot()));
 }
-
-void doodle::jump(double I){ player->setY(player->y()+ I); }
+void doodle::jump(double I) { player->setY(player->y() + I); }
 void doodle::aftershot() //SLOT
-{ player->setPixmap(doodle_pix_type[type][1]); }
+{
+    player->setPixmap(doodle_pix_type[type][1]);
+}
 //y
-
